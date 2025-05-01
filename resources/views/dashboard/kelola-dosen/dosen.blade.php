@@ -84,7 +84,7 @@
                                                 d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
                                         </svg>
                                         <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-100 text-gray-600 text-xs rounded py-1 px-2 whitespace-nowrap">
+                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
                                             Lihat
                                         </span>
                                     </button>
@@ -98,7 +98,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                         <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-100 text-gray-600 text-xs rounded py-1 px-2 whitespace-nowrap">
+                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
                                             Hapus
                                         </span>
                                     </button>

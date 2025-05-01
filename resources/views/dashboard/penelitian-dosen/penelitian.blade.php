@@ -54,11 +54,11 @@
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-start items-start md:items-center gap-4 mb-14">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
                 <div class="text-sm font-medium text-center text-gray-700 border-b-2 border-[#457B9D]">
                     <ul class="flex flex-wrap -mb-px">
                         <li class="me-2">
-                            <a href="#"
+                            <a href="detail-penelitian-dosen"
                                 class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Semua
                                 Status</a>
                         </li>
@@ -81,103 +81,124 @@
                     </ul>
                 </div>
 
+                <!-- Dropdown Tahun Penelitian Dosen -->
+                <div class="w-full max-w-xs">
+                    <select id="tahunPenelitian" name="tahunPenelitian"
+                        class="mt-1 block w-full px-4 py-2 rounded-md border-2 border-[#48A6A7] focus:border-[#006A71] focus:ring-[#006A71] sm:text-sm">
+                        <option value="">Pilih Tahun Penelitian</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <!-- Tambahkan tahun lain sesuai kebutuhan -->
+                    </select>
+                </div>
+
             </div>
 
             <div class="overflow-x-auto">
-                <div class="md:flex">
-                    <ul
-                        class="flex-column space-y space-y-8 text-sm text-center font-medium text-gray-500 md:me-4 mb-4 md:mb-0">
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center px-8 py-3 text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none font-medium border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] rounded-lg w-full"
-                                aria-current="page">
-                                Semua Status
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center px-14 py-3 text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none font-medium border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] rounded-lg w-full"
-                                aria-current="page">
-                                Draft
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center px-14 py-3 text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none font-medium border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] rounded-lg w-full"
-                                aria-current="page">
-                                Diproses
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center px-14 py-3 text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none font-medium border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] rounded-lg w-full"
-                                aria-current="page">
-                                Diterima
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="inline-flex items-center px-14 py-3 text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none font-medium border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] rounded-lg w-full"
-                                aria-current="page">
-                                Ditolak
-                            </a>
-                        </li>
-                    </ul>
-                    <div
-                        class="px-6 bg-gray-50 text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full">
-                        <table class="w-full text-sm text-left text-gray-700">
-                            <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
-                                <tr>
-                                    <th scope="col" class="px-4 py-3">Nama</th>
-                                    <th scope="col" class="px-4 py-3">NIDN</th>
-                                    <th scope="col" class="px-4 py-3">Program Studi</th>
-                                    <th scope="col" class="px-4 py-3">Status</th>
-                                    <th scope="col" class="px-4 py-3">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b">
-                                    <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
-                                    <td class="px-4 py-3">19800531</td>
-                                    <td class="px-4 py-3">Teknik Informatika</td>
-                                    <td class="px-4 py-3 text-green-600">Aktif</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex items-center justify-start gap-3">
-                                            <!-- Button View -->
-                                            <button class="relative group flex items-center justify-center w-10 h-10">
-                                                <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
-                                                    fill="currentColor" viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
-                                                </svg>
-                                                <span
-                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-100 text-gray-600 text-xs rounded py-1 px-2 whitespace-nowrap">
-                                                    Lihat
-                                                </span>
-                                            </button>
+                <table class="w-full text-sm text-left text-gray-700">
+                    <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
+                        <tr>
+                            <th scope="col" class="px-4 py-3">Nama</th>
+                            <th scope="col" class="px-4 py-3">NIDN</th>
+                            <th scope="col" class="px-4 py-3">Program Studi</th>
+                            <th scope="col" class="px-4 py-3">Status</th>
+                            <th scope="col" class="px-4 py-3">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b">
+                            <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
+                            <td class="px-4 py-3">19800531</td>
+                            <td class="px-4 py-3">Teknik Informatika</td>
+                            <td class="px-4 py-3 text-green-600">Aktif</td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-start gap-3">
+                                    <!-- Button View -->
+                                    <button class="relative group flex items-center justify-center w-10 h-10">
+                                        <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
+                                        </svg>
+                                        <span
+                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                            Lihat
+                                        </span>
+                                    </button>
 
-                                            <!-- Button Delete -->
-                                            <button class="relative group flex items-center justify-center w-10 h-10">
-                                                <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                                    fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                                <span
-                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-gray-100 text-gray-600 text-xs rounded py-1 px-2 whitespace-nowrap">
-                                                    Hapus
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </td>
+                                    <!-- Button Delete -->
+                                    <button class="relative group flex items-center justify-center w-10 h-10">
+                                        <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
+                                            fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span
+                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                            Hapus
+                                        </span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- Pagination Table -->
+                <div class="flex items-center justify-between mt-8">
+                    <span class="text-sm text-gray-700">Menampilkan 1 dari 10 data</span>
+                    <nav aria-label="Page navigation example">
+                        <ul class="flex items-center -space-x-px h-8 text-sm gap-4">
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-700 bg-gray-100 border border-gray-400 rounded-s-lg hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">
+                                    <span class="sr-only">Previous</span>
+                                    <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 1 1 5l4 4" />
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">1</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">2</a>
+                            </li>
+                            <li>
+                                <a href="#" aria-current="page"
+                                    class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white border border-[#48A6A7] bg-[#48A6A7]">3</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">4</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">5</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 rounded-e-lg hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">
+                                    <span class="sr-only">Next</span>
+                                    <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 9 4-4-4-4" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
+
             </div>
         </div>
 

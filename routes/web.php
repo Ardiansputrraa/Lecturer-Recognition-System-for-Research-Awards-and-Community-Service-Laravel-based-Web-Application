@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.home.home');
 });
 
 Route::get('/home', function () {
@@ -16,4 +16,8 @@ Route::get('/kelola-dosen', function () {
 
 Route::get('/penelitian-dosen', function () {
     return view('dashboard.penelitian-dosen.penelitian');
+});
+
+Route::get('/detail-penelitian-dosen', function () {
+    return view('dashboard.penelitian-dosen.detail-penelitian');
 });
