@@ -24,7 +24,7 @@
 
             <!-- Dropdown Notification -->
             <div
-                class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 scale-95 peer-focus:opacity-100 peer-focus:scale-100 transition-all duration-300 origin-top-right z-50 invisible peer-focus:visible">
+                class="absolute right-0 mt-2 w-95 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 scale-95 peer-focus:opacity-100 peer-focus:scale-100 transition-all duration-300 origin-top-right z-50 invisible peer-focus:visible">
                 <div class="flex justify-between border-b border-gray-400">
                     <p class="px-4 py-3 font-semibold text-gray-900">Notifikasi</p>
                     <a href="#"
@@ -38,7 +38,10 @@
                         <div>
                             <p class="font-semibold text-gray-800">Fajar Rahman</p>
                             <p class="text-gray-600">Pesan baru diterima</p>
-                            <p class="text-gray-600 mt-2">12-01-2024</p>
+                            <div class="f1lex items-center space-x-4 mt-2">
+                                <span class="text-gray-600">12-01-2024</span>
+                                <span class="text-gray-600">06.00</span>
+                            </div>
                         </div>
                     </li>
                     <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
@@ -46,15 +49,21 @@
                         <div>
                             <p class="font-semibold text-gray-800">Sinta Dewi</p>
                             <p class="text-gray-600">Update sistem tersedia</p>
-                            <p class="text-gray-600 mt-2">12-01-2024</p>
+                            <div class="f1lex items-center space-x-4 mt-2">
+                                <span class="text-gray-600">12-01-2024</span>
+                                <span class="text-gray-600">06.00</span>
+                            </div>
                         </div>
                     </li>
                     <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
                         <img src="assets/images/user.png" alt="User" class="w-10 h-10 rounded-full object-cover">
                         <div>
                             <p class="font-semibold text-gray-800">Andi Wijaya</p>
-                            <p class="text-gray-600">Pengingat rapat pukul 15.00</p>
-                            <p class="text-gray-600 mt-2">12-01-2024</p>
+                            <p class="text-gray-600">Pengingat rapat pukul 15.0</p>
+                            <div class="f1lex items-center space-x-4 mt-2">
+                                <span class="text-gray-600">12-01-2024</span>
+                                <span class="text-gray-600">06.00</span>
+                            </div>
                         </div>
                     </li>
                 </ul>

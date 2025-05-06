@@ -110,6 +110,58 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Pagination Table -->
+            <div class="flex items-center justify-between mt-8">
+                <span class="text-sm text-gray-700">Menampilkan 1 dari 10 data</span>
+                <nav aria-label="Page navigation example">
+                    <ul class="flex items-center -space-x-px h-8 text-sm gap-4">
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-700 bg-gray-100 border border-gray-400 rounded-s-lg hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">1</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">2</a>
+                        </li>
+                        <li>
+                            <a href="#" aria-current="page"
+                                class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-white border border-[#48A6A7] bg-[#48A6A7]">3</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">4</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">5</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-700 bg-gray-100 border border-gray-400 rounded-e-lg hover:bg-gray-100 hover:text-[#006A71] hover:border-[#006A71]">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
         </div>
 
     </main>
