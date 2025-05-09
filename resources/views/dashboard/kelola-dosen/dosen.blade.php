@@ -61,10 +61,12 @@
                 <table class="w-full text-sm text-left text-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
                         <tr>
-                            <th scope="col" class="px-4 py-3">Nama</th>
+                            <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                             <th scope="col" class="px-4 py-3">NIDN</th>
+                            <th scope="col" class="px-4 py-3">Fakultas</th>
                             <th scope="col" class="px-4 py-3">Program Studi</th>
-                            <th scope="col" class="px-4 py-3">Status</th>
+                            <th scope="col" class="px-4 py-3">Email</th>
+                            <th scope="col" class="px-4 py-3">Nomer Telepon</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -72,8 +74,10 @@
                         <tr class="bg-white border-b">
                             <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
                             <td class="px-4 py-3">19800531</td>
+                            <td class="px-4 py-3">Teknologi Informasi</td>
                             <td class="px-4 py-3">Teknik Informatika</td>
-                            <td class="px-4 py-3 text-green-600">Aktif</td>
+                            <td class="px-4 py-3">dosen@gmail.com</td>
+                            <td class="px-4 py-3">19800531</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start gap-3">
                                     <!-- Button View -->

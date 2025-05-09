@@ -14,6 +14,10 @@ Route::get('/kelola-dosen', function () {
     return view(view: 'dashboard.kelola-dosen.dosen');
 });
 
+Route::get('/detail-dosen', function () {
+    return view(view: 'dashboard.kelola-dosen.detail-dosen');
+});
+
 Route::get('/penelitian-dosen', function () {
     return view('dashboard.penelitian-dosen.penelitian');
 });

@@ -38,14 +38,14 @@
                                     Penelitian</label>
                                 <input type="text" name="jabatan" id="jabatan"
                                     class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                    placeholder="Masukkan Jabatan dalam Penelitian" value="Ketua" required disabled />
+                                    placeholder="Masukkan jabatan dalam penelitian" value="Ketua" required disabled />
                             </div>
                             <div class="w-full md:w-1/2">
                                 <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
                                     Penelitian</label>
                                 <input type="text" name="dana" id="dana"
                                     class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                    placeholder="Masukkan Dana Penelitian" value="Rp. 58.500.000" required disabled />
+                                    placeholder="Masukkan dana penelitian" value="Rp. 58.500.000" required disabled />
                             </div>
                         </div>
 
@@ -56,14 +56,14 @@
                                     Penelitian</label>
                                 <textarea type="text" name="judul" id="judul"
                                     class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                    placeholder="Masukkan Judul Penelitian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
+                                    placeholder="Masukkan judul penelitian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
                             </div>
                             <div class="w-full md:w-1/2">
                                 <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
                                     Penelitian</label>
                                 <textarea name="sumber" id="sumber"
                                     class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                    placeholder="Masukkan Sumber Dana Penelitian" required disabled>UIN Maulana Malik Ibrahim Malang</textarea>
+                                    placeholder="Masukkan sumber dana penelitian" required disabled>UIN Maulana Malik Ibrahim Malang</textarea>
 
                             </div>
                         </div>
@@ -266,6 +266,19 @@
 
                             <!-- Tambahkan card lainnya jika perlu -->
 
+                        </div>
+
+                        <div class="flex justify-end">
+                            <div class="flex items-center justify-between gap-4 mt-4 mb-4">
+                                <button
+                                    class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                    Simpan Draft
+                                </button>
+                                <button
+                                    class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                    Ajukan Draft
+                                </button>
+                            </div>
                         </div>
                     </div>
 
