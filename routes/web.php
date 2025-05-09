@@ -6,6 +6,10 @@ Route::get('/', function () {
     return view('dashboard.home.home');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::get('/home', function () {
     return view('dashboard.home.home');
 });
