@@ -1,8 +1,6 @@
 <x-header></x-header>
 
-<script>
-    
-</script>
+<script></script>
 
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
@@ -28,7 +26,7 @@
                     </svg>
                     Data Dosen
                 </button>
-            
+
                 <!-- Bagian Pencarian dan Ekspor CSV -->
                 <div class="flex flex-row  items-stretch sm:items-center gap-4 w-full md:w-auto">
                     <!-- Input Pencarian -->
@@ -43,7 +41,7 @@
                             </svg>
                         </div>
                     </div>
-            
+
                     <!-- Tombol Ekspor CSV -->
                     <button
                         class="flex items-center gap-2 bg-[#5F9AB8] text-white px-4 py-2 rounded-lg hover:bg-[#457B9D] transition duration-300 w-full sm:w-auto">
@@ -55,14 +53,14 @@
                     </button>
                 </div>
             </div>
-            
+
 
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
                         <tr>
                             <th scope="col" class="px-4 py-3">Nama Lengkap</th>
-                            <th scope="col" class="px-4 py-3">NIDN</th>
+                            <th scope="col" class="px-4 py-3">NIP</th>
                             <th scope="col" class="px-4 py-3">Fakultas</th>
                             <th scope="col" class="px-4 py-3">Program Studi</th>
                             <th scope="col" class="px-4 py-3">Email</th>
@@ -165,7 +163,7 @@
                     </ul>
                 </nav>
             </div>
-            
+
         </div>
 
     </main>
@@ -177,8 +175,7 @@
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-lg">
                 <!-- Modal header -->
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                     <h3 class="text-xl font-semibold text-[#006A71]">
                         Tambah Data Dosen
                     </h3>
@@ -187,8 +184,8 @@
                         data-modal-hide="tambahDosenModal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -197,49 +194,96 @@
                 <div class="p-4 md:p-5 max-h-96 overflow-y-auto">
                     <form class="space-y-4" action="#">
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="namaLengkap" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                Lengkap</label>
+                            <input type="text" name="namaLengkap" id="namaLengkap"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukan nama lengkap beserta gelar" required />
                         </div>
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="nip" class="block mb-2 text-sm font-medium text-gray-900">NIP</label>
+                            <input type="text" name="nip" id="nip"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                placeholder="Masukan NIP" required />
                         </div>
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="fakultas"
+                                class="block mb-2 text-sm font-medium text-gray-900">Fakultas</label>
+                            <select
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                id="fakultas" name="fakultas">
+                                <option disabled selected>Pilih Fakultas</option>
+                                <option value="Fakultas Kedokteran">
+                                    Fakultas Kedokteran</option>
+                                <option value="Fakultas Kedokteran Gigi">
+                                    Fakultas Kedokteran Gigi</option>
+                                <option value="Fakultas Psikologi">
+                                    Fakultas Psikologi</option>
+                                <option value="Fakultas Ekonomi dan Bisnis">
+                                    Fakultas Ekonomi dan Bisnis</option>
+                                <option value="Fakultas Teknologi Informasi">
+                                    Fakultas Teknologi Informasi</option>
+                                <option value="Fakultas Hukum">
+                                    Fakultas Hukum</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="prodi" class="block mb-2 text-sm font-medium text-gray-900">Program
+                                Studi</label>
+                            <select
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                id="prodi" name="prodi">
+                                <option disabled selected>Pilih Program Studi</option>
+                                <option value="Prodi Kedokteran">
+                                    Prodi Kedokteran</option>
+                                <option value="Prodi Kedokteran Gigi">
+                                    Prodi Kedokteran Gigi</option>
+                                <option value="Prodi Psikologi">
+                                    Prodi Psikologi</option>
+                                <option value="Prodi Akutansi">
+                                    Prodi Akutansi</option>
+                                <option value="Prodi Manajemen">
+                                    Prodi Manajemen</option>
+                                <option value="Prodi Teknik Informatika">
+                                    Prodi Teknik Informatika</option>
+                                <option value="Prodi Perpustakaan Sains Informasi">
+                                    Prodi Perpustakaan Sains Informasi</option>
+                                <option value="Prodi Hukum">
+                                    Prodi Hukum</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="email"
-                                class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                            <input type="email" name="email" id="email"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                placeholder="Masukan email" required />
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                            <input type="password" name="password" id="password"
+                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                placeholder="Masukan password" required />
+                        </div>
+                        <div>
+                            <label for="nomerTelepon" class="block mb-2 text-sm font-medium text-gray-900">Nomer
+                                Telepon</label>
+                            <input type="number" name="nomerTelepon" id="nomerTelepon"
+                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                placeholder="Masukan nomer telepon" required />
                         </div>
                     </form>
                 </div>
                 <!-- Modal footer -->
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                    <button data-modal-hide="tambahDosenModal" type="button"
-                        class="text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Tambah Dosen</button>
-                    <button data-modal-hide="tambahDosenModal" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-[#DC2626] focus:outline-none bg-white hover:bg-[#EF4444] rounded-lg border-2 border-[#DC2626] hover:border-[#EF4444] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100">Kembali</button>
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
+                    <button
+                        class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Tambah Dosen
+                    </button>
+                    <button
+                        class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Batal
+                    </button>
                 </div>
             </div>
         </div>

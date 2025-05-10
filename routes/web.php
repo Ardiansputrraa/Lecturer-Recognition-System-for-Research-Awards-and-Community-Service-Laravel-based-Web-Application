@@ -10,6 +10,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/profile', function () {
+    return view('profile.profile');
+});
+
 Route::get('/home', function () {
     return view('dashboard.home.home');
 });

@@ -68,7 +68,7 @@
                         </li>
                         <li class="me-2">
                             <a href="#"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Diproses</a>
+                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Diajukan</a>
                         </li>
                         <li class="me-2">
                             <a href="#"
@@ -97,23 +97,26 @@
 
             </div>
 
+            <!-- Tabel Penelitian Dosen -->
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
                         <tr>
-                            <th scope="col" class="px-4 py-3">Nama</th>
-                            <th scope="col" class="px-4 py-3">NIDN</th>
-                            <th scope="col" class="px-4 py-3">Program Studi</th>
-                            <th scope="col" class="px-4 py-3">Status</th>
+                            <th scope="col" class="px-4 py-3">Nama Lengkap</th>
+                            <th scope="col" class="px-4 py-3">Jabatan dalam Penelitian</th>
+                            <th scope="col" class="px-4 py-3">Judul Penelitian</th>
+                            <th scope="col" class="px-4 py-3">Besaran Dana</th>
+                            <th scope="col" class="px-4 py-3">Sumber Dana</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b">
                             <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
-                            <td class="px-4 py-3">19800531</td>
-                            <td class="px-4 py-3">Teknik Informatika</td>
-                            <td class="px-4 py-3 text-green-600">Aktif</td>
+                            <td class="px-4 py-3">Ketua</td>
+                            <td class="px-4 py-3">The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</td>
+                            <td class="px-4 py-3">Rp. 58.500.000</td>
+                            <td class="px-4 py-3">UIN Maulana Malik Ibrahim Malang</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start gap-3">
                                     <!-- Button View -->
@@ -230,49 +233,45 @@
                 <div class="p-4 md:p-5 max-h-96 overflow-y-auto">
                     <form class="space-y-4" action="#">
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-900">Jabatan dalam
+                                Penelitian</label>
+                            <input type="text" name="jabatan" id="jabatan"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                placeholder="Masukkan jabatan dalam penelitian" required/>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                Lengkap</label>
-                            <input type="text" name="email" id="email"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                            <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
+                                Penelitian</label>
+                            <textarea type="text" name="judul" id="judul"
+                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
+                                placeholder="Masukkan judul penelitian" required></textarea>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                Lengkap</label>
-                            <input type="text" name="email" id="email"
+                            <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
+                                Penelitian</label>
+                            <input type="text" name="dana" id="dana"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                                placeholder="Masukkan dana penelitian" required/>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                Lengkap</label>
-                            <input type="text" name="email" id="email"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
-                        </div>
-                        <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
-                                Lengkap</label>
-                            <input type="text" name="email" id="email"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukan nama lengkap beserta gelar" required />
+                            <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
+                                Penelitian</label>
+                            <textarea name="sumber" id="sumber"
+                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
+                                placeholder="Masukkan sumber dana penelitian" required></textarea>
                         </div>
                     </form>
                 </div>
                 <!-- Modal footer -->
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                    <button data-modal-hide="tambahDosenModal" type="button"
-                        class="text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Tambah Penelitian Dosen</button>
-                    <button data-modal-hide="tambahDosenModal" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-[#DC2626] focus:outline-none bg-white hover:bg-[#EF4444] rounded-lg border-2 border-[#DC2626] hover:border-[#EF4444] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100">Kembali</button>
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
+                    <button
+                        class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Tambah Penelitian
+                    </button>
+                    <button
+                        class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Batal
+                    </button>
                 </div>
             </div>
         </div>

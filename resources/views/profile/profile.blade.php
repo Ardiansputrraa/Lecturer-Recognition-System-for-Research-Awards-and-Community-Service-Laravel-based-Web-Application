@@ -28,16 +28,16 @@
                             Kembali
                         </span>
                     </a>
-                    <h1 class="text-xl font-semibold text-gray-900">Detail Dosen</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Profil Dosen</h1>
                 </div>
-                <!-- Tombol Edit Dosen -->
+                <!-- Tombol Edit Profile -->
                 <button data-modal-target="tambahDosenModal" data-modal-toggle="tambahDosenModal" type="button"
                     class="flex items-center gap-2 bg-[#48A6A7] text-white px-4 py-2 rounded-lg hover:bg-[#006A71] transition duration-300 w-full md:w-auto">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M17.414 2.586a2 2 0 0 0-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 0 0 0-2.828zM4 15h12v2H4v-2z" />
                     </svg>
-                    Edit Dosen
+                    Edit Profil
                 </button>
             </div>
 
