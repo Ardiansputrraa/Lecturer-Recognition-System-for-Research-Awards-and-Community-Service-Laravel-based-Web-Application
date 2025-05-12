@@ -33,3 +33,12 @@ Route::get('/penelitian-dosen', function () {
 Route::get('/detail-penelitian-dosen', function () {
     return view('dashboard.penelitian-dosen.detail-penelitian');
 });
+
+
+Route::get('/pengabdian-dosen', function () {
+    return view('dashboard.pengabdian-dosen.pengabdian');
+});
+
+Route::get('/detail-pengabdian-dosen', function () {
+    return view('dashboard.pengabdian-dosen.detail-pengabdian');
+});

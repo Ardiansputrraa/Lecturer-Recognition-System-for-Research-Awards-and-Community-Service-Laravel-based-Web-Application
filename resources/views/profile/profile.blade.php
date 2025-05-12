@@ -17,7 +17,7 @@
         <div class="bg-white w-full p-6 shadow-lg rounded">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
                 <div class="flex items-center justify-start gap-6">
-                    <a href="/kelola-dosen"
+                    <a href="/home"
                         class="relative group text-[#48A6A7] hover:text-[#006A71] transition duration-300 ease-in-out ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
@@ -44,7 +44,7 @@
             <div class="mt-6">
                 <div class="flex flex-col md:flex-row gap-6 items-start">
                     <!-- Profile Image -->
-                    <div class="w-full md:w-1/4">
+                    <div class="w-full md:w-1/3">
                         <img src="assets/images/profile.jpeg" alt="Profile Photo"
                             class="w-full aspect-square object-cover rounded-lg border border-[#48A6A7] shadow-lg" />
                     </div>
@@ -126,6 +126,15 @@
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                         placeholder="Masukkan nomer telepon" value="19800531" required disabled />
                                 </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="profileUpload" class="block mb-2 text-sm font-medium text-gray-900">Unggah Foto Baru</label>
+                                <input type="file" id="profileUpload" name="profileUpload"
+                                    class="block w-full bg-gray-100 border border-gray-400 text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+                                           file:rounded-lg file:border-0 file:text-sm file:font-medium rounded-lg mb-4
+                                           file:bg-[#48A6A7] file:text-white hover:file:bg-[#3f9293]
+                                           transition-all duration-200" disabled/>
                             </div>
                         </form>
                     </div>

@@ -25,14 +25,14 @@
             <!-- Dropdown Notification -->
             <div
                 class="absolute right-0 mt-2 w-95 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 scale-95 peer-focus:opacity-100 peer-focus:scale-100 transition-all duration-300 origin-top-right z-50 invisible peer-focus:visible">
-                <div class="flex justify-between border-b border-gray-400">
+                <div class="flex justify-center border-b border-gray-400">
                     <p class="px-4 py-3 font-semibold text-gray-900">Notifikasi</p>
-                    <a href="#"
+                    {{-- <a href="#"
                         class="px-4 py-3 text-sm text-[#006A71] font-medium cursor-pointer hover:underline">Lihat
-                        semua</a>
+                        semua</a> --}}
                 </div>
 
-                <ul class="max-h-80 overflow-y-auto">
+                <ul class="max-h-100 overflow-y-auto">
                     <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
                         <img src="assets/images/user.png" alt="User" class="w-10 h-10 rounded-full object-cover">
                         <div>

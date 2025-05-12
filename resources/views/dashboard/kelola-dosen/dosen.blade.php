@@ -280,7 +280,7 @@
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Tambah Dosen
                     </button>
-                    <button
+                    <button data-modal-hide="tambahDosenModal"
                         class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Batal
                     </button>
