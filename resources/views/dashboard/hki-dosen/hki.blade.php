@@ -12,26 +12,26 @@
 
         <x-navbar></x-navbar>
 
-        <!-- Tabel Data Penelitian -->
+        <!-- Tabel Data HKI -->
         <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
 
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 mt-4">
-                <!-- Tombol Tambah Penelitian -->
-                <button data-modal-target="tambahPenelitianModal" data-modal-toggle="tambahPenelitianModal" type="button"
+                <!-- Tombol Tambah HKI -->
+                <button data-modal-target="tambahHKIModal" data-modal-toggle="tambahHKIModal" type="button"
                     class="flex items-center gap-2 bg-[#48A6A7] text-white px-4 py-2 rounded-lg hover:bg-[#006A71] transition duration-300 w-full md:w-auto">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                             clip-rule="evenodd" />
                     </svg>
-                    Penelitian Dosen
+                    HKI Dosen
                 </button>
 
                 <!-- Bagian Pencarian dan Ekspor CSV -->
                 <div class="flex flex-row  items-stretch sm:items-center gap-4 w-full md:w-auto">
                     <!-- Input Pencarian -->
                     <div class="relative w-full sm:w-64">
-                        <input type="text" placeholder="Cari Penelitian Dosen"
+                        <input type="text" placeholder="Cari HKI Dosen"
                             class="w-full border border-gray-400 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-[#48A6A7]" />
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg class="w-5 h-5 text-[#006A71]" fill="currentColor" viewBox="0 0 20 20">
@@ -58,7 +58,7 @@
                 <div class="text-sm font-medium text-center text-gray-700 border-b-2 border-[#457B9D]">
                     <ul class="flex flex-wrap -mb-px">
                         <li class="me-2">
-                            <a href="detail-penelitian-dosen"
+                            <a href="detail-hki-dosen"
                                 class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Semua
                                 Status</a>
                         </li>
@@ -81,11 +81,11 @@
                     </ul>
                 </div>
 
-                <!-- Dropdown Tahun Penelitian Dosen -->
+                <!-- Dropdown Tahun HKI Dosen -->
                 <div class="w-full max-w-xs">
-                    <select id="tahunPenelitian" name="tahunPenelitian"
+                    <select id="tahunHKI" name="tahunHKI"
                         class="mt-1 block w-full px-4 py-2 rounded-md border-2 border-[#48A6A7] focus:border-[#006A71] focus:ring-[#006A71] sm:text-sm">
-                        <option value="">Pilih Tahun Penelitian</option>
+                        <option value="">Pilih Tahun HKI</option>
                         <option value="2025">2025</option>
                         <option value="2024">2024</option>
                         <option value="2023">2023</option>
@@ -97,29 +97,26 @@
 
             </div>
 
-            <!-- Tabel Penelitian Dosen -->
+            <!-- Tabel HKI Dosen -->
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
                         <tr>
-                            <th scope="col" class="px-4 py-3">Nama Lengkap</th>
-                            <th scope="col" class="px-4 py-3">Jabatan dalam Penelitian</th>
-                            <th scope="col" class="px-4 py-3">Judul Penelitian</th>
-                            <th scope="col" class="px-4 py-3">Tahun Penelitian</th>
-                            <th scope="col" class="px-4 py-3">Besaran Dana</th>
-                            <th scope="col" class="px-4 py-3">Sumber Dana</th>
+                            <th scope="col" class="px-4 py-3">Nama Pencipta</th>
+                            <th scope="col" class="px-4 py-3">Nama Pemegang Hak Cipta</th>
+                            <th scope="col" class="px-4 py-3">Jenis Ciptaan</th>
+                            <th scope="col" class="px-4 py-3">Judul Ciptaan</th>
+                            <th scope="col" class="px-4 py-3">Tahun Ciptaan</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b">
                             <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
-                            <td class="px-4 py-3">Ketua</td>
-                            <td class="px-4 py-3">The Integration of Popular Culture in Islamic Dakwah for Gen Z; The
-                                Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</td>
+                            <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
+                            <td class="px-4 py-3">Jurnal</td>
+                            <td class="px-4 py-3">An Analysis of Commissive Speech Acts Used by the Main Characters in Women-Centric Movies</td>
                             <td class="px-4 py-3">2025</td>
-                            <td class="px-4 py-3">Rp. 58.500.000</td>
-                            <td class="px-4 py-3">UIN Maulana Malik Ibrahim Malang</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start gap-3">
                                     <!-- Button View -->
@@ -210,8 +207,8 @@
 
     </main>
 
-    <!--Modal Tambah Penelitian-->
-    <div id="tambahPenelitianModal" tabindex="-1" aria-hidden="true"
+    <!--Modal Tambah HKI-->
+    <div id="tambahHKIModal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <!-- Modal content -->
@@ -219,11 +216,11 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                     <h3 class="text-xl font-semibold text-[#006A71]">
-                        Tambah Penelitian Dosen
+                        Tambah HKI Dosen
                     </h3>
                     <button type="button"
                         class="bg-transparent text-red-400 hover:bg-gray-100 hover:text-red-600 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="tambahPenelitianModal">
+                        data-modal-hide="tambahHKIModal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -236,39 +233,24 @@
                 <div class="p-4 md:p-5 max-h-96 overflow-y-auto">
                     <form class="space-y-4" action="#">
                         <div>
-                            <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-900">Jabatan dalam
-                                Penelitian</label>
-                            <input type="text" name="jabatan" id="jabatan"
+                            <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900">Jenis Ciptaan</label>
+                            <input type="text" name="jenis" id="jenis"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukkan jabatan dalam penelitian" required />
+                                placeholder="Masukkan jjenis ciptaan" required />
                         </div>
                         <div>
                             <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
-                                Penelitian</label>
+                                Ciptaan</label>
                             <textarea type="text" name="judul" id="judul"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                placeholder="Masukkan judul penelitian" required></textarea>
+                                placeholder="Masukkan judul ciptaan" required></textarea>
                         </div>
                         <div>
                             <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900">Tahun
-                                Penelitian</label>
+                                Ciptaan</label>
                             <input type="number" name="tahun" id="tahun"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukkan tahun penelitian" min="2000" max="2025" required />
-                        </div>
-                        <div>
-                            <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
-                                Penelitian</label>
-                            <input type="number" name="dana" id="dana"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                placeholder="Masukkan dana penelitian" required />
-                        </div>
-                        <div>
-                            <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
-                                Penelitian</label>
-                            <textarea name="sumber" id="sumber"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                placeholder="Masukkan sumber dana penelitian" required></textarea>
+                                placeholder="Masukkan tahun ciptaan" min="2000" max="2025" required />
                         </div>
                     </form>
                 </div>
@@ -276,9 +258,9 @@
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
                     <button
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
-                        Tambah Penelitian
+                        Tambah HKI
                     </button>
-                    <button data-modal-hide="tambahPenelitianModal"
+                    <button data-modal-hide="tambahHKIModal"
                         class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Batal
                     </button>

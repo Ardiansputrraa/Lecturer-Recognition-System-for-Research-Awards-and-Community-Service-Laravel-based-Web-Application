@@ -18,8 +18,7 @@
                 <div class="flex items-center justify-between mb-4">
                     <h1 class="text-xl font-semibold text-gray-900">Detail Pengabdian</h1>
                     <!-- Tombol Edit Pengabdian -->
-                    <button data-modal-target="uploadBuktiPengabdianModal" data-modal-toggle="uploadBuktiPengabdianModal"
-                        type="button"
+                    <button type="button"
                         class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
                         <!-- Icon Edit (Pencil) -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -31,40 +30,47 @@
                 </div>
                 <div class="mt-6">
                     <form class="space-y-4" action="#">
-                        <!-- Baris 1 -->
                         <div class="flex flex-col md:flex-row gap-4">
-                            <div class="w-full md:w-1/2">
-                                <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-900">Jabatan dalam
-                                    Pengabdian</label>
-                                <input type="text" name="jabatan" id="jabatan"
-                                    class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                    placeholder="Masukkan jabatan dalam pengabdian" value="Ketua" required disabled />
-                            </div>
-                            <div class="w-full md:w-1/2">
-                                <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
-                                    Pengabdian</label>
-                                <input type="text" name="dana" id="dana"
-                                    class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                    placeholder="Masukkan dana pengabdian" value="Rp. 58.500.000" required disabled />
-                            </div>
-                        </div>
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <!-- Jabatan -->
+                                <div>
+                                    <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-900">Jabatan
+                                        dalam Pengabdian</label>
+                                    <input type="text" name="jabatan" id="jabatan"
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                        placeholder="Masukkan jabatan dalam pengabdian" value="Ketua" required
+                                        disabled />
+                                </div>
 
-                        <!-- Baris 2 -->
-                        <div class="flex flex-col md:flex-row gap-4">
-                            <div class="w-full md:w-1/2">
-                                <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
-                                    Pengabdian</label>
-                                <textarea type="text" name="judul" id="judul"
-                                    class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                    placeholder="Masukkan judul pengabdian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
-                            </div>
-                            <div class="w-full md:w-1/2">
-                                <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
-                                    Pengabdian</label>
-                                <textarea name="sumber" id="sumber"
-                                    class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                    placeholder="Masukkan sumber dana pengabdian" required disabled>UIN Maulana Malik Ibrahim Malang</textarea>
+                                <!-- Tanggal Pengabdian -->
+                                <div>
+                                    <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900">Tahun
+                                        Pengabdian</label>
+                                    <input type="number" name="tahun" id="tahun"
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                        value="2025" placeholder="Masukkan tahun pengabdian" min="2000" max="2025" required disabled />
+                                </div>
 
+                                <!-- Besaran Dana -->
+                                <div>
+                                    <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran
+                                        Dana Pengabdian</label>
+                                    <input type="number" name="dana" id="dana"
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                        placeholder="Masukkan dana pengabdian" value="Rp. 58.500.000" required
+                                        disabled />
+                                </div>
+                            </div>
+                            
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <!-- Sumber Pengabdian -->
+                                <div>
+                                    <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
+                                        Pengabdian</label>
+                                    <textarea name="sumber" id="sumber"
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 sm:h-54 resize-none"
+                                        placeholder="Masukkan sumber dana pengabdian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -140,8 +146,8 @@
                                     <button class="relative group flex items-center justify-center w-10 h-10">
                                         <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
                                             fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
                                                 d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                                         </svg>
                                         <span
@@ -523,66 +529,68 @@
                         <!-- Upload Bukti Pengabdian (Drag & Drop) -->
                         <div class="mb-4">
                             <label class="block mb-2 text-sm font-medium text-gray-900">Unggah Bukti Pengabdian</label>
-                          
+
                             <div id="drop-area"
-                              class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:border-gray-400 cursor-pointer hover:bg-gray-200 transition">
-                              <p class="text-sm text-gray-700 mt-4">Tarik dan letakkan gambar atau file di sini atau klik untuk unggah</p>
-                              <input type="file" id="fileElem" multiple class="hidden" onchange="handleFiles(this.files)">
-                              <button type="button" onclick="document.getElementById('fileElem').click()"
-                                class="mt-4 mb-6 text-white bg-[#48A6A7] hover:bg-[#006A71] font-medium rounded px-4 py-1 text-sm">
-                                Pilih File
-                              </button>
+                                class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:border-gray-400 cursor-pointer hover:bg-gray-200 transition">
+                                <p class="text-sm text-gray-700 mt-4">Tarik dan letakkan gambar atau file di sini atau
+                                    klik untuk unggah</p>
+                                <input type="file" id="fileElem" multiple class="hidden"
+                                    onchange="handleFiles(this.files)">
+                                <button type="button" onclick="document.getElementById('fileElem').click()"
+                                    class="mt-4 mb-6 text-white bg-[#48A6A7] hover:bg-[#006A71] font-medium rounded px-4 py-1 text-sm">
+                                    Pilih File
+                                </button>
                             </div>
-                          
+
                             <!-- Preview File -->
                             <div id="preview" class="mt-4 space-y-4"></div>
-                          </div>
-                          
-                          <script>
+                        </div>
+
+                        <script>
                             const dropArea = document.getElementById('drop-area');
                             const preview = document.getElementById('preview');
-                          
+
                             dropArea.addEventListener('dragover', (e) => {
-                              e.preventDefault();
-                              dropArea.classList.add('bg-gray-200');
+                                e.preventDefault();
+                                dropArea.classList.add('bg-gray-200');
                             });
-                          
+
                             dropArea.addEventListener('dragleave', () => {
-                              dropArea.classList.remove('bg-gray-200');
+                                dropArea.classList.remove('bg-gray-200');
                             });
-                          
+
                             dropArea.addEventListener('drop', (e) => {
-                              e.preventDefault();
-                              dropArea.classList.remove('bg-gray-200');
-                              const files = e.dataTransfer.files;
-                              handleFiles(files);
+                                e.preventDefault();
+                                dropArea.classList.remove('bg-gray-200');
+                                const files = e.dataTransfer.files;
+                                handleFiles(files);
                             });
-                          
+
                             function handleFiles(files) {
-                              for (const file of files) {
-                                const fileItem = document.createElement('div');
-                                fileItem.className = 'p-4 border rounded bg-white shadow-sm relative';
-                          
-                                const closeBtn = document.createElement('button');
-                                closeBtn.innerHTML = '×';
-                                closeBtn.className = 'absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl font-bold';
-                                closeBtn.onclick = () => fileItem.remove();
-                          
-                                if (file.type.startsWith('image/')) {
-                                  const reader = new FileReader();
-                                  reader.onload = (e) => {
-                                    fileItem.innerHTML = `
+                                for (const file of files) {
+                                    const fileItem = document.createElement('div');
+                                    fileItem.className = 'p-4 border rounded bg-white shadow-sm relative';
+
+                                    const closeBtn = document.createElement('button');
+                                    closeBtn.innerHTML = '×';
+                                    closeBtn.className = 'absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl font-bold';
+                                    closeBtn.onclick = () => fileItem.remove();
+
+                                    if (file.type.startsWith('image/')) {
+                                        const reader = new FileReader();
+                                        reader.onload = (e) => {
+                                            fileItem.innerHTML = `
                                       <img src="${e.target.result}" class="object-cover rounded mb-2 border" />
                                       <p class="font-medium break-words">${file.name}</p>
                                       <p class="text-sm text-gray-600">Type: ${file.type || 'Unknown'}</p>
                                       <p class="text-sm text-gray-600">Size: ${(file.size / 1024).toFixed(2)} KB</p>
                                     `;
-                                    fileItem.appendChild(closeBtn);
-                                    preview.appendChild(fileItem);
-                                  };
-                                  reader.readAsDataURL(file);
-                                } else {
-                                  fileItem.innerHTML = `
+                                            fileItem.appendChild(closeBtn);
+                                            preview.appendChild(fileItem);
+                                        };
+                                        reader.readAsDataURL(file);
+                                    } else {
+                                        fileItem.innerHTML = `
                                     <div class="flex items-center gap-2">
                                       <svg class="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M8 2a1 1 0 00-1 1v1H5a1 1 0 00-1 1v10a2 2 0 002 2h6a2 2 0 002-2V5a1 1 0 00-1-1h-2V3a1 1 0 00-1-1H8z" />
@@ -594,22 +602,25 @@
                                       </div>
                                     </div>
                                   `;
-                                  fileItem.appendChild(closeBtn);
-                                  preview.appendChild(fileItem);
+                                        fileItem.appendChild(closeBtn);
+                                        preview.appendChild(fileItem);
+                                    }
                                 }
-                              }
                             }
-                          </script>
-                          
+                        </script>
+
                     </form>
                 </div>
                 <!-- Modal footer -->
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                    <button data-modal-hide="uploadBuktiPengabdianModal" type="button"
-                        class="text-white hover:text-[#457B9D] bg-[#5F9AB8] hover:bg-white focus:ring-4 focus:outline-none border-2 border-[#5F9AB8] hover:border-[#457B9D] focus:ring-[#457B9D] font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Unggah Bukti Pengabdian</button>
-                    <button data-modal-hide="uploadBuktiPengabdianModal" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-[#DC2626] focus:outline-none bg-white hover:bg-[#EF4444] rounded-lg border-2 border-[#DC2626] hover:border-[#EF4444] hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100">Kembali</button>
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
+                    <button
+                        class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Unggah Bukti Pengabdian
+                    </button>
+                    <button data-modal-hide="uploadBuktiPengabdianModal"
+                        class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
+                        Batal
+                    </button>
                 </div>
             </div>
         </div>

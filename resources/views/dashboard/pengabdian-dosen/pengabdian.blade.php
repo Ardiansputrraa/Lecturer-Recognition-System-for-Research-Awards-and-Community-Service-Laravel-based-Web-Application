@@ -104,7 +104,7 @@
                         <tr>
                             <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                             <th scope="col" class="px-4 py-3">Jabatan dalam Pengabdian</th>
-                            <th scope="col" class="px-4 py-3">Judul Pengabdian</th>
+                            <th scope="col" class="px-4 py-3">Tahun Pengabdian</th>
                             <th scope="col" class="px-4 py-3">Besaran Dana</th>
                             <th scope="col" class="px-4 py-3">Sumber Dana</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
@@ -114,8 +114,7 @@
                         <tr class="bg-white border-b">
                             <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
                             <td class="px-4 py-3">Ketua</td>
-                            <td class="px-4 py-3">The Integration of Popular Culture in Islamic Dakwah for Gen Z; The
-                                Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</td>
+                            <td class="px-4 py-3">2025</td>
                             <td class="px-4 py-3">Rp. 58.500.000</td>
                             <td class="px-4 py-3">UIN Maulana Malik Ibrahim Malang</td>
                             <td class="px-4 py-3">
@@ -241,16 +240,16 @@
                                 placeholder="Masukkan jabatan dalam pengabdian" required />
                         </div>
                         <div>
-                            <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
+                            <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900">Tahun
                                 Pengabdian</label>
-                            <textarea type="text" name="judul" id="judul"
-                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                placeholder="Masukkan judul pengabdian" required></textarea>
+                            <input type="number" name="tahun" id="tahun"
+                                class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                placeholder="Masukkan tahun pengabdian" min="2000" max="2025" required />
                         </div>
                         <div>
                             <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
                                 Pengabdian</label>
-                            <input type="text" name="dana" id="dana"
+                            <input type="number" name="dana" id="dana"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukkan dana pengabdian" required />
                         </div>

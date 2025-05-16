@@ -16,8 +16,8 @@
             <!-- Layout 70% -->
             <div class="bg-white w-full lg:w-[70%] p-6 shadow rounded overflow-y-auto h-full">
                 <div class="flex items-center justify-between mb-4">
-                    <h1 class="text-xl font-semibold text-gray-900">Detail Penelitian</h1>
-                    <!-- Tombol Edit Penelitian -->
+                    <h1 class="text-xl font-semibold text-gray-900">Detail Hak Kekayaan Intelektual</h1>
+                    <!-- Tombol Edit HKI -->
                     <button type="button"
                         class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
                         <!-- Icon Edit (Pencil) -->
@@ -25,61 +25,41 @@
                             <path
                                 d="M17.414 2.586a2 2 0 0 0-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 0 0 0-2.828zM4 15h12v2H4v-2z" />
                         </svg>
-                        Edit Penelitian
+                        Edit HKI
                     </button>
                 </div>
                 <div class="mt-6">
                     <form class="space-y-4" action="#">
                         <div class="flex flex-col md:flex-row gap-4">
                             <div class="w-full md:w-1/2 space-y-4">
-                                <!-- Jabatan -->
+                                <!-- Jenis Ciptaan -->
                                 <div>
-                                    <label for="jabatan" class="block mb-2 text-sm font-medium text-gray-900">Jabatan
-                                        dalam Penelitian</label>
-                                    <input type="text" name="jabatan" id="jabatan"
+                                    <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900">Jenis Ciptaan</label>
+                                    <input type="text" name="jenis" id="jenis"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan jabatan dalam penelitian" value="Ketua" required
+                                        placeholder="Masukkan jenis ciptaan" value="Ketua" required
                                         disabled />
                                 </div>
 
-                                <!-- Tahun Penelitian -->
+                                <!-- Tahun HKI -->
                                 <div>
                                     <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900">Tahun
-                                        Penelitian</label>
+                                        Ciptaan</label>
                                     <input type="number" name="tahun" id="tahun"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        value="2025" placeholder="Masukkan tahun penelitian" min="2000" max="2025" required disabled />
-                                </div>
-
-                                <!-- Besaran Dana -->
-                                <div>
-                                    <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran
-                                        Dana Penelitian</label>
-                                    <input type="number" name="dana" id="dana"
-                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan dana penelitian" value="Rp. 58.500.000" required
-                                        disabled />
+                                        placeholder="Masukkan tahun ciptaan" min="2000" max="2025"
+                                        value="2025" required disabled />
                                 </div>
                             </div>
                             
                             <div class="w-full md:w-1/2 space-y-4">
-                                <!-- Judul Penelitian -->
+                                <!-- Judul HKI -->
                                 <div>
                                     <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
-                                        Penelitian</label>
+                                        Ciptaan</label>
                                     <textarea name="judul" id="judul"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                        placeholder="Masukkan judul penelitian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
-                                </div>
-
-                                <!-- Sumber Dana -->
-                                <div>
-                                    <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber
-                                        Dana Penelitian</label>
-                                    <input type="text" name="sumber" id="sumber"
-                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan sumber dana penelitian" value="UIN Maulana Malik Ibrahim Malang" required
-                                        disabled />
+                                        placeholder="Masukkan judul Ciptaan" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
                                 </div>
                             </div>
                         </div>
@@ -88,10 +68,10 @@
 
                 <div class="mt-12 border-t-2 border-gray-300">
                     <div class="flex items-center justify-between mb-4 mt-6">
-                        <h1 class="text-xl font-semibold text-gray-900">Bukti Penelitian</h1>
-                        <!-- Tombol Edit Penelitian -->
-                        <button data-modal-target="uploadBuktiPenelitianModal"
-                            data-modal-toggle="uploadBuktiPenelitianModal" type="button"
+                        <h1 class="text-xl font-semibold text-gray-900">Bukti Hak Kekayaan Intelektual</h1>
+                        <!-- Tombol Edit HKI -->
+                        <button data-modal-target="uploadBuktiHKIModal"
+                            data-modal-toggle="uploadBuktiHKIModal" type="button"
                             class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
                             <!-- Icon Edit (Pencil) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -104,13 +84,13 @@
                         </button>
                     </div>
 
-                    <!-- Bukti Penelitian -->
+                    <!-- Bukti HKI -->
                     <div class="mt-4 space-y-5">
-                        <p class="text-sm text-gray-500">Unggah bukti penelitian yang telah dilakukan. Pastikan file
+                        <p class="text-sm text-gray-500">Unggah bukti hki yang telah dilakukan. Pastikan file
                             yang
                             diunggah sesuai dengan format yang ditentukan.</p>
 
-                        <!-- Kartu Bukti Penelitian -->
+                        <!-- Kartu Bukti HKI -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <!-- Card 1 -->
                             <div
@@ -504,8 +484,8 @@
         </div>
     </main>
 
-    <!--Modal Unggah Bukti Penelitian-->
-    <div id="uploadBuktiPenelitianModal" tabindex="-1" aria-hidden="true"
+    <!--Modal Unggah Bukti HKI-->
+    <div id="uploadBuktiHKIModal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <!-- Modal content -->
@@ -513,11 +493,11 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                     <h3 class="text-xl font-semibold text-[#006A71]">
-                        Unggah Bukti Penelitian
+                        Unggah Bukti HKI
                     </h3>
                     <button type="button"
                         class="bg-transparent text-red-400 hover:bg-gray-100 hover:text-red-600 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                        data-modal-hide="uploadBuktiPenelitianModal">
+                        data-modal-hide="uploadBuktiHKIModal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -536,9 +516,9 @@
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukan nama file" required />
                         </div>
-                        <!-- Upload Bukti Penelitian (Drag & Drop) -->
+                        <!-- Upload Bukti HKI (Drag & Drop) -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Unggah Bukti Penelitian</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Unggah Bukti HKI</label>
 
                             <div id="drop-area"
                                 class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:border-gray-400 cursor-pointer hover:bg-gray-200 transition">
@@ -625,9 +605,9 @@
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
                     <button
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
-                        Unggah Bukti Penelitian
+                        Unggah Bukti HKI
                     </button>
-                    <button data-modal-hide="uploadBuktiPenelitianModal"
+                    <button data-modal-hide="uploadBuktiHKIModal"
                         class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Batal
                     </button>

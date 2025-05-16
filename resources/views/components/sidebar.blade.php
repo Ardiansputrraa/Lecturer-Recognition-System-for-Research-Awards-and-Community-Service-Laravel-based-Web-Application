@@ -71,7 +71,36 @@
                     <span class="ms-3" x-show="sidebarOpen" x-transition>Dosen</span>
                 </a>
             </li>
-            <!-- Sidebar Active -->
+
+            <li>
+                <a href="/publikasi-dosen"
+                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    <div
+                        class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
+                        <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                            <path d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Z"/>
+                            <path fill-rule="evenodd" d="M11 7V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm4.707 5.707a1 1 0 0 0-1.414-1.414L11 14.586l-1.293-1.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <span class="ms-3" x-show="sidebarOpen" x-transition>Publikasi</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/hki-dosen"
+                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    <div
+                        class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
+                        <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <span class="ms-3" x-show="sidebarOpen" x-transition>Hak Kekayaan Intelektual</span>
+                </a>
+            </li>
+
             <li>
                 <a href="/penelitian-dosen"
                 class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
@@ -86,25 +115,6 @@
 
                     </div>
                     <span class="ms-3" x-show="sidebarOpen" x-transition>Penelitian</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/penghargaan-dosen"
-                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
-                    <div
-                        class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
-                        <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
-                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                            <path d="M11 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
-                            <path fill-rule="evenodd"
-                                d="M9.896 3.051a2.681 2.681 0 0 1 4.208 0c.147.186.38.282.615.255a2.681 2.681 0 0 1 2.976 2.975.681.681 0 0 0 .254.615 2.681 2.681 0 0 1 0 4.208.682.682 0 0 0-.254.615 2.681 2.681 0 0 1-2.976 2.976.681.681 0 0 0-.615.254 2.682 2.682 0 0 1-4.208 0 .681.681 0 0 0-.614-.255 2.681 2.681 0 0 1-2.976-2.975.681.681 0 0 0-.255-.615 2.681 2.681 0 0 1 0-4.208.681.681 0 0 0 .255-.615 2.681 2.681 0 0 1 2.976-2.975.681.681 0 0 0 .614-.255ZM12 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
-                                clip-rule="evenodd" />
-                            <path
-                                d="M5.395 15.055 4.07 19a1 1 0 0 0 1.264 1.267l1.95-.65 1.144 1.707A1 1 0 0 0 10.2 21.1l1.12-3.18a4.641 4.641 0 0 1-2.515-1.208 4.667 4.667 0 0 1-3.411-1.656Zm7.269 2.867 1.12 3.177a1 1 0 0 0 1.773.224l1.144-1.707 1.95.65A1 1 0 0 0 19.915 19l-1.32-3.93a4.667 4.667 0 0 1-3.4 1.642 4.643 4.643 0 0 1-2.53 1.21Z" />
-                        </svg>
-                    </div>
-                    <span class="ms-3" x-show="sidebarOpen" x-transition>Penghargaan</span>
                 </a>
             </li>
 
