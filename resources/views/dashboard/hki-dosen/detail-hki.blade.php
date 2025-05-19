@@ -4,7 +4,7 @@
 
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
-    <x-sidebar></x-sidebar>
+    <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
 
     <!-- Konten utama -->
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
@@ -15,8 +15,13 @@
         <div class="flex flex-col lg:flex-row gap-4 w-full h-[700px]">
             <!-- Layout 70% -->
             <div class="bg-white w-full lg:w-[70%] p-6 shadow rounded overflow-y-auto h-full">
-                <div class="flex items-center justify-between mb-4">
-                    <h1 class="text-xl font-semibold text-gray-900">Detail Hak Kekayaan Intelektual</h1>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 mb-4">
+                    <div class="flex gap-4">
+                        <h1 class="text-md py-1 font-semibold text-gray-900">Status HKI</h1>
+                        <div class="border-2 border-[#EF4444] px-8 py-1 rounded-md">
+                            <p class="text-sm font-medium text-[#EF4444]">Ditolak</p>
+                        </div>
+                    </div>
                     <!-- Tombol Edit HKI -->
                     <button type="button"
                         class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
@@ -34,11 +39,11 @@
                             <div class="w-full md:w-1/2 space-y-4">
                                 <!-- Jenis Ciptaan -->
                                 <div>
-                                    <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900">Jenis Ciptaan</label>
+                                    <label for="jenis" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                        Ciptaan</label>
                                     <input type="text" name="jenis" id="jenis"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan jenis ciptaan" value="Ketua" required
-                                        disabled />
+                                        placeholder="Masukkan jenis ciptaan" value="Ketua" required disabled />
                                 </div>
 
                                 <!-- Tahun HKI -->
@@ -51,7 +56,7 @@
                                         value="2025" required disabled />
                                 </div>
                             </div>
-                            
+
                             <div class="w-full md:w-1/2 space-y-4">
                                 <!-- Judul HKI -->
                                 <div>
@@ -70,8 +75,8 @@
                     <div class="flex items-center justify-between mb-4 mt-6">
                         <h1 class="text-xl font-semibold text-gray-900">Bukti Hak Kekayaan Intelektual</h1>
                         <!-- Tombol Edit HKI -->
-                        <button data-modal-target="uploadBuktiHKIModal"
-                            data-modal-toggle="uploadBuktiHKIModal" type="button"
+                        <button data-modal-target="uploadBuktiHKIModal" data-modal-toggle="uploadBuktiHKIModal"
+                            type="button"
                             class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
                             <!-- Icon Edit (Pencil) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -136,8 +141,8 @@
                                     <button class="relative group flex items-center justify-center w-10 h-10">
                                         <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
                                             fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
                                                 d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                                         </svg>
                                         <span

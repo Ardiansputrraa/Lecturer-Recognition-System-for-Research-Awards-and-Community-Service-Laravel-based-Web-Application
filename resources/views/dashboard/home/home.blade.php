@@ -8,7 +8,7 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar></x-navbar>
+        <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
 
         <!-- Statistik Cards -->
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6 mt-4">

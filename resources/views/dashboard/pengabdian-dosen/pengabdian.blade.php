@@ -10,7 +10,7 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar></x-navbar>
+        <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
 
         <!-- Tabel Data Pengabdian Dosen -->
         <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
@@ -107,6 +107,7 @@
                             <th scope="col" class="px-4 py-3">Tahun Pengabdian</th>
                             <th scope="col" class="px-4 py-3">Besaran Dana</th>
                             <th scope="col" class="px-4 py-3">Sumber Dana</th>
+                            <th scope="col" class="px-4 py-3">Status</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -117,6 +118,7 @@
                             <td class="px-4 py-3">2025</td>
                             <td class="px-4 py-3">Rp. 58.500.000</td>
                             <td class="px-4 py-3">UIN Maulana Malik Ibrahim Malang</td>
+                            <td class="px-4 py-3 text-[#DC2626]">Ditolak</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start gap-3">
                                     <!-- Button View -->

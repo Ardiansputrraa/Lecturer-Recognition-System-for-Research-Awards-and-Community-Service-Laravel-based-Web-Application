@@ -10,7 +10,7 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar></x-navbar>
+        <x-navbar title="Hak Kekayaan Intelektual" description="Pantau dan kelola hak kekayaan intelektual" />
 
         <!-- Tabel Data HKI -->
         <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
@@ -107,6 +107,7 @@
                             <th scope="col" class="px-4 py-3">Jenis Ciptaan</th>
                             <th scope="col" class="px-4 py-3">Judul Ciptaan</th>
                             <th scope="col" class="px-4 py-3">Tahun Ciptaan</th>
+                            <th scope="col" class="px-4 py-3">Status</th>
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
@@ -117,6 +118,7 @@
                             <td class="px-4 py-3">Jurnal</td>
                             <td class="px-4 py-3">An Analysis of Commissive Speech Acts Used by the Main Characters in Women-Centric Movies</td>
                             <td class="px-4 py-3">2025</td>
+                            <td class="px-4 py-3 text-[#DC2626]">Ditolak</td>
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-start gap-3">
                                     <!-- Button View -->

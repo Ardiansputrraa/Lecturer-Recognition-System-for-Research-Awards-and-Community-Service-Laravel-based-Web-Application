@@ -1,9 +1,5 @@
 <x-header></x-header>
 
-<script>
-    
-</script>
-
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
     <x-sidebar></x-sidebar>
@@ -12,7 +8,7 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar></x-navbar>
+        <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
 
         <div class="bg-white w-full p-6 shadow-lg rounded">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
@@ -21,7 +17,8 @@
                         class="relative group text-[#48A6A7] hover:text-[#006A71] transition duration-300 ease-in-out ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 12h14M5 12l4-4m-4 4 4 4" />
                         </svg>
                         <span
                             class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
@@ -31,7 +28,7 @@
                     <h1 class="text-xl font-semibold text-gray-900">Detail Dosen</h1>
                 </div>
                 <!-- Tombol Edit Dosen -->
-                <button data-modal-target="tambahDosenModal" data-modal-toggle="tambahDosenModal" type="button"
+                <button type="button" onclick="addEdit()"
                     class="flex items-center gap-2 bg-[#48A6A7] text-white px-4 py-2 rounded-lg hover:bg-[#006A71] transition duration-300 w-full md:w-auto">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path
@@ -39,118 +36,213 @@
                     </svg>
                     Edit Dosen
                 </button>
+                <script>
+                    window.addEdit = function () {
+                        $('input:disabled, select:disabled, textarea:disabled, button:disabled').each(function () {
+                            $(this).removeAttr('disabled');
+                        });
+                        $('input, select, textarea, button').removeClass('cursor-not-allowed opacity-50');
+                    }
+                </script>
             </div>
 
             <div class="mt-6">
                 <div class="flex flex-col md:flex-row gap-6 items-start">
                     <!-- Profile Image -->
-                    <div class="w-full md:w-1/3">
-                        <img src="assets/images/profile.jpeg" alt="Profile Photo"
-                            class="w-full aspect-square object-cover rounded-lg border border-[#48A6A7] shadow-lg" />
+                    <div class="w-full md:w-1/5">
+                        <img src="{{ asset($dosen->foto_profile) }}" alt="Profile Photo"
+                            class="w-full aspect-square object-cover rounded-full border-4 border-[#48A6A7] shadow-lg" />
                     </div>
-            
+
                     <!-- Form Section -->
                     <div class="w-full md:w-3/4">
                         <form class="space-y-4" action="#">
                             <!-- Row 1 -->
                             <div class="flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2">
-                                    <label for="namaLengkap" class="block mb-2 text-sm font-medium text-gray-900">Nama Lengkap</label>
+                                    <label for="namaLengkap" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                        Lengkap</label>
                                     <input type="text" name="namaLengkap" id="namaLengkap"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan nama lengkap beserta gelar" value="Dr. Rina Wijaya" required disabled />
+                                        placeholder="Masukkan nama lengkap beserta gelar"
+                                        value="{{ $dosen->nama_lengkap }}" required disabled />
                                 </div>
                                 <div class="w-full md:w-1/2">
-                                    <label for="nip" class="block mb-2 text-sm font-medium text-gray-900">NIP</label>
+                                    <label for="nip"
+                                        class="block mb-2 text-sm font-medium text-gray-900">NIP</label>
                                     <input type="text" name="nip" id="nip"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan NIP" value="19800531" required disabled />
+                                        placeholder="Masukkan NIP" value="{{ $dosen->nip }}" required disabled />
                                 </div>
                             </div>
-            
+
                             <!-- Row 2 -->
                             <div class="flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2">
-                                    <label for="fakultas" class="block mb-2 text-sm font-medium text-gray-900">Fakultas</label>
-                                    <select class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5" id="fakultas" name="fakultas" disabled>
+                                    <label for="fakultas"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Fakultas</label>
+                                    <select
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                        id="fakultas" name="fakultas" disabled>
                                         <option disabled selected>Pilih Fakultas</option>
-                                        <option value="Fakultas Kedokteran">
+                                        <option value="Fakultas Kedokteran"
+                                            {{ $dosen->fakultas == 'Fakultas Kedokteran' ? 'selected' : '' }}>
                                             Fakultas Kedokteran</option>
-                                        <option value="Fakultas Kedokteran Gigi">
+                                        <option value="Fakultas Kedokteran Gigi"
+                                            {{ $dosen->fakultas == 'Fakultas Kedokteran Gigi' ? 'selected' : '' }}>
                                             Fakultas Kedokteran Gigi</option>
-                                        <option value="Fakultas Psikologi">
+                                        <option value="Fakultas Psikologi"
+                                            {{ $dosen->fakultas == 'Fakultas Psikologi' ? 'selected' : '' }}>
                                             Fakultas Psikologi</option>
-                                        <option value="Fakultas Ekonomi dan Bisnis">
+                                        <option value="Fakultas Ekonomi dan Bisnis"
+                                            {{ $dosen->fakultas == 'Fakultas Ekonomi' ? 'selected' : '' }}>
                                             Fakultas Ekonomi dan Bisnis</option>
-                                        <option value="Fakultas Teknologi Informasi">
+                                        <option value="Fakultas Teknologi Informasi"
+                                            {{ $dosen->fakultas == 'Fakultas Teknologi Informasi' ? 'selected' : '' }}>
                                             Fakultas Teknologi Informasi</option>
-                                        <option value="Fakultas Hukum">
+                                        <option value="Fakultas Hukum"
+                                            {{ $dosen->fakultas == 'Fakultas Hukum' ? 'selected' : '' }}>
                                             Fakultas Hukum</option>
                                     </select>
                                 </div>
                                 <div class="w-full md:w-1/2">
-                                    <label for="prodi" class="block mb-2 text-sm font-medium text-gray-900">Program Studi</label>
-                                    <select class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5" id="prodi" name="prodi" disabled>
+                                    <label for="prodi" class="block mb-2 text-sm font-medium text-gray-900">Program
+                                        Studi</label>
+                                    <select
+                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
+                                        id="prodi" name="prodi" disabled>
                                         <option disabled selected>Pilih Program Studi</option>
-                                        <option value="Prodi Kedokteran">
+                                        <option value="Prodi Kedokteran"
+                                            {{ $dosen->prodi == 'Prodi Kedokteran' ? 'selected' : '' }}>
                                             Prodi Kedokteran</option>
-                                        <option value="Prodi Kedokteran Gigi">
+                                        <option value="Prodi Kedokteran Gigi"
+                                            {{ $dosen->prodi == 'Prodi Kedokteran Gigi' ? 'selected' : '' }}>
                                             Prodi Kedokteran Gigi</option>
-                                        <option value="Prodi Psikologi">
+                                        <option value="Prodi Psikologi"
+                                            {{ $dosen->prodi == 'Prodi Psikologi' ? 'selected' : '' }}>
                                             Prodi Psikologi</option>
-                                        <option value="Prodi Akutansi">
+                                        <option value="Prodi Akutansi"
+                                            {{ $dosen->prodi == 'Prodi Akutansi' ? 'selected' : '' }}>
                                             Prodi Akutansi</option>
-                                        <option value="Prodi Manajemen">
+                                        <option value="Prodi Manajemen"
+                                            {{ $dosen->prodi == 'Prodi Manajemen' ? 'selected' : '' }}>
                                             Prodi Manajemen</option>
-                                        <option value="Prodi Teknik Informatika">
+                                        <option value="Prodi Teknik Informatika"
+                                            {{ $dosen->prodi == 'Prodi Teknik Informatika' ? 'selected' : '' }}>
                                             Prodi Teknik Informatika</option>
-                                        <option value="Prodi Perpustakaan Sains Informasi">
+                                        <option value="Prodi Perpustakaan Sains Informasi"
+                                            {{ $dosen->prodi == 'Prodi Perpustakaan Sains Informasi' ? 'selected' : '' }}>
                                             Prodi Perpustakaan Sains Informasi</option>
-                                        <option value="Prodi Hukum">
+                                        <option value="Prodi Hukum"
+                                            {{ $dosen->prodi == 'Prodi Hukum' ? 'selected' : '' }}>
                                             Prodi Hukum</option>
                                     </select>
                                 </div>
                             </div>
-            
+
                             <!-- Row 3 -->
                             <div class="flex flex-col md:flex-row gap-4">
                                 <div class="w-full md:w-1/2">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                                    <input type="email" name="email" id="email"
-                                        class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan email" value="dosen@gmail.com" required disabled />
-                                </div>
-                                <div class="w-full md:w-1/2">
-                                    <label for="nomerTelpon" class="block mb-2 text-sm font-medium text-gray-900">Nomer Telepon</label>
+                                    <label for="nomerTelpon" class="block mb-2 text-sm font-medium text-gray-900">Nomer
+                                        Telepon</label>
                                     <input type="number" name="nomerTelpon" id="nomerTelpon"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan nomer telepon" value="19800531" required disabled />
+                                        placeholder="Masukkan nomer telepon" value="{{ $dosen->no_telepon }}" required disabled />
                                 </div>
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="profileUpload" class="block mb-2 text-sm font-medium text-gray-900">Unggah Foto Baru</label>
-                                <input type="file" id="profileUpload" name="profileUpload"
-                                    class="block w-full bg-gray-100 border border-gray-400 text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+                                <div class="w-full md:w-1/2">
+                                    <label for="foto" class="block mb-2 text-sm font-medium text-gray-900">Unggah
+                                        Foto Baru</label>
+                                    <input type="file" id="foto" name="foto"
+                                        class="block w-full bg-gray-100 border border-gray-400 text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
                                            file:rounded-lg file:border-0 file:text-sm file:font-medium rounded-lg mb-4
                                            file:bg-[#48A6A7] file:text-white hover:file:bg-[#3f9293]
-                                           transition-all duration-200" disabled />
+                                           transition-all duration-200"
+                                        disabled />
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-6 flex justify-end mb-4">
-                <button data-modal-target="tambahDosenModal" data-modal-toggle="tambahDosenModal" type="button"
-                    class="flex items-center gap-2 bg-[#5F9AB8] text-white px-4 py-2 rounded-lg hover:bg-white hover:text-[#457B9D] border-2 border-[#457B9D] transition duration-300 w-full md:w-auto">
+
+            <div class="mt-8 flex justify-end mb-4">
+                <button id="update" type="button" onclick="updateDosen()" disabled
+                    class="flex items-center gap-2 cursor-not-allowed opacity-50 bg-[#5F9AB8] text-white px-4 py-2 rounded-lg hover:bg-white hover:text-[#457B9D] border-2 border-[#457B9D] transition duration-300 w-full md:w-auto">
                     Simpan Perubahan
                 </button>
-                <button class="flex items-center gap-2 bg-[#EF4444] text-white px-4 py-2 rounded-lg hover:bg-white hover:text-[#DC2626] border-2 border-[#DC2626] transition duration-300 w-full md:w-auto ml-4">
+                <button id="cancel" type="button" disabled onclick="window.location.reload()"
+                    class="flex items-center gap-2 cursor-not-allowed opacity-50 bg-[#EF4444] text-white px-4 py-2 rounded-lg hover:bg-white hover:text-[#DC2626] border-2 border-[#DC2626] transition duration-300 w-full md:w-auto ml-4">
                     Batal Perubahan
                 </button>
-
             </div>
+
+            <script>
+                window.getData = function () {
+                    let form_data = new FormData();
+                    let id = @json($dosen->id);
+                    let file = $("#foto")[0].files[0];
+                    let namaLengkap = $("#namaLengkap").val() || (@json($dosen->nama_lengkap) === null ?
+                        "Masukkan nama lengkap beserta gelar" : @json($dosen->nama_lengkap));
+                    let nip = $("#nip").val() || (@json($dosen->nip) === null ? "Masukkan NIP" : @json($dosen->nip));
+                    let fakultas = $("#fakultas").val() || @json($dosen->fakultas);
+                    let prodi = $("#prodi").val() || @json($dosen->prodi);
+                    let nomerTelpon = $("#nomerTelpon").val() ||
+                        (@json($dosen->no_telpon) === null ? "Masukkan nomer telepon" : @json($dosen->no_telpon));
+            
+                    form_data.append("_token", "{{ csrf_token() }}");
+                    form_data.append("id", id);
+                    form_data.append("foto", file);
+                    form_data.append("namaLengkap", namaLengkap);
+                    form_data.append("fakultas", fakultas);
+                    form_data.append("prodi", prodi);
+                    if ($("#nip").val() != "") {
+                        form_data.append("nip", nip);
+                    }
+                    form_data.append("nomerTelpon", nomerTelpon);
+            
+                    return form_data;
+                }
+            
+                window.updateDosen = function () {
+                    console.log("Data yang akan dikirim:", getData());
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('update.dosen') }}",
+                        data: getData(),
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            Swal.fire({
+                                title: "Berhasil",
+                                text: "Data dosen berhasil diubah!",
+                                icon: "success",
+                                confirmButtonText: "Oke",
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function (xhr) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.message === "NIP sudah digunakan!") {
+                                Swal.fire({
+                                    title: "Update Gagal",
+                                    text: "NIP tersebut telah terdaftar. Silakan gunakan NIP lain!",
+                                    icon: "error",
+                                    confirmButtonText: "Oke",
+                                    customClass: {
+                                        confirmButton: 'btn app-btn-primary',
+                                        cancelButton: 'btn app-btn-secondary',
+                                    },
+                                });
+                            } else {
+                                console.log("Error lain:", response.errors);
+                            }
+                        }
+                    });
+                }
+            </script>
+            
 
         </div>
 
