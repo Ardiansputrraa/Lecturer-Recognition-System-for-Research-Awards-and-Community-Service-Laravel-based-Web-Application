@@ -13,7 +13,7 @@
         <div class="bg-white w-full p-6 shadow-lg rounded">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4">
                 <div class="flex items-center justify-start gap-6">
-                    <a href="/kelola-dosen"
+                    <a href="/home"
                         class="relative group text-[#48A6A7] hover:text-[#006A71] transition duration-300 ease-in-out ">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" stroke-width="2">

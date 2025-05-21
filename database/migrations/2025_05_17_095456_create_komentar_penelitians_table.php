@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penelitian_id')->constrained('penelitian')->onDelete('cascade');
             $table->text('komentar');
-            $table->timestamp('created_at')->useCurrent();
+            $table->string('nama_lengkap');
+            $table->string('foto_profile');
+            $table->timestamps(); 
         });
     }
 

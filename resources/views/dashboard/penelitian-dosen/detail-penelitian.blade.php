@@ -1,6 +1,327 @@
 <x-header></x-header>
 
-<script></script>
+<script>
+    function ubahPenelitian(id) {
+        let jabatan = $("#jabatan").val();
+        let judul = $("#judul").val();
+        let tahun = $("#tahun").val();
+        let dana = $("#dana").val();
+        let sumber = $("#sumber").val();
+
+        if (jabatan == "" || judul == "" || tahun == "" || dana == "" || sumber == "") {
+            Swal.fire({
+                title: "Info",
+                text: "Semua field wajib diisi!",
+                icon: "info",
+                confirmButtonText: "Oke",
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('update.penelitian') }}",
+            data: {
+                _token: "{{ csrf_token() }}",
+                jabatan: jabatan,
+                id: id,
+                judul: judul,
+                tahun: tahun,
+                besaran_dana: dana,
+                sumber_dana: sumber,
+                status: "Draft",
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Data penelitian berhasil diubah!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Gagal",
+                    text: response.errors,
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                    customClass: {
+                        confirmButton: 'btn app-btn-primary',
+                        cancelButton: 'btn app-btn-secondary',
+                    },
+                });
+            }
+        });
+    }
+
+    function ajukanPenilitian(id) {
+        let jabatan = $("#jabatan").val();
+        let judul = $("#judul").val();
+        let tahun = $("#tahun").val();
+        let dana = $("#dana").val();
+        let sumber = $("#sumber").val();
+
+        if (jabatan == "" || judul == "" || tahun == "" || dana == "" || sumber == "") {
+            Swal.fire({
+                title: "Info",
+                text: "Semua field wajib diisi!",
+                icon: "info",
+                confirmButtonText: "Oke",
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('update.penelitian') }}",
+            data: {
+                _token: "{{ csrf_token() }}",
+                jabatan: jabatan,
+                id: id,
+                judul: judul,
+                tahun: tahun,
+                besaran_dana: dana,
+                sumber_dana: sumber,
+                status: "Diajukan",
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Data penelitian berhasil diubah!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Gagal",
+                    text: response.errors,
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                    customClass: {
+                        confirmButton: 'btn app-btn-primary',
+                        cancelButton: 'btn app-btn-secondary',
+                    },
+                });
+            }
+        });
+    }
+
+    function setujuiPenilitian(id) {
+        let jabatan = $("#jabatan").val();
+        let judul = $("#judul").val();
+        let tahun = $("#tahun").val();
+        let dana = $("#dana").val();
+        let sumber = $("#sumber").val();
+
+        if (jabatan == "" || judul == "" || tahun == "" || dana == "" || sumber == "") {
+            Swal.fire({
+                title: "Info",
+                text: "Semua field wajib diisi!",
+                icon: "info",
+                confirmButtonText: "Oke",
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('update.penelitian') }}",
+            data: {
+                _token: "{{ csrf_token() }}",
+                jabatan: jabatan,
+                id: id,
+                judul: judul,
+                tahun: tahun,
+                besaran_dana: dana,
+                sumber_dana: sumber,
+                status: "Disetujui",
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Data penelitian berhasil diubah!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Gagal",
+                    text: response.errors,
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                    customClass: {
+                        confirmButton: 'btn app-btn-primary',
+                        cancelButton: 'btn app-btn-secondary',
+                    },
+                });
+            }
+        });
+    }
+
+    function tolakPenilitian(id) {
+        let jabatan = $("#jabatan").val();
+        let judul = $("#judul").val();
+        let tahun = $("#tahun").val();
+        let dana = $("#dana").val();
+        let sumber = $("#sumber").val();
+
+        if (jabatan == "" || judul == "" || tahun == "" || dana == "" || sumber == "") {
+            Swal.fire({
+                title: "Info",
+                text: "Semua field wajib diisi!",
+                icon: "info",
+                confirmButtonText: "Oke",
+            }).then(() => {
+                window.location.reload();
+            });
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('update.penelitian') }}",
+            data: {
+                _token: "{{ csrf_token() }}",
+                jabatan: jabatan,
+                id: id,
+                judul: judul,
+                tahun: tahun,
+                besaran_dana: dana,
+                sumber_dana: sumber,
+                status: "Ditolak",
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Data penelitian berhasil diubah!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Gagal",
+                    text: response.errors,
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                    customClass: {
+                        confirmButton: 'btn app-btn-primary',
+                        cancelButton: 'btn app-btn-secondary',
+                    },
+                });
+            }
+        });
+    }
+
+    function uploadFilePenelitian(penelitian_id) {
+        let namaFile = $('#namaFile').val();
+        let fileInput = $('#filePenelitian')[0];
+        let file = fileInput.files[0];
+
+        if (namaFile === "") {
+            $("#helpJudul")
+                .text("Silahkan masukan nama file!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#namaFile").focus();
+            return;
+        }
+
+        if (namaFile !== "") {
+            $("#helpJudul")
+                .text("")
+                .removeClass("is-danger");
+        }
+
+        if (!file) {
+            $("#helpFilePenelitian")
+                .text("Silahkan pilih file terlebih dahulu!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            return;
+        }
+
+        if (file) {
+            $("#helpFilePenelitian")
+                .text("")
+                .removeClass("is-danger");
+        }
+
+        let formSumberDaya = new FormData();
+        formSumberDaya.append('_token', "{{ csrf_token() }}");
+        formSumberDaya.append('namaFile', namaFile);
+        formSumberDaya.append('penelitian_id', penelitian_id);
+        formSumberDaya.append('file', file);
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('upload.file.penelitian') }}",
+            data: formSumberDaya,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Bukti penelitian berhasil diunggah!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then(() => {
+                    window.location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Gagal",
+                    text: "Terjadi kesalahan saat mengunggah file.",
+                    icon: "error",
+                    confirmButtonText: "Coba Lagi",
+                });
+            }
+        });
+    }
+
+    function hapusFilePenelitian(file_id) {
+        $.ajax({
+            type: "GET",
+            url: `/delete-file-penelitian/${file_id}`,
+            data: {
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                Swal.fire({
+                    title: "Berhasil",
+                    text: "Bukti penelitian berhasil dihapus!",
+                    icon: "success",
+                    confirmButtonText: "Oke",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Delete Failed",
+                    text: xhr.responseText,
+                    icon: "error",
+                    confirmButtonText: "Oke",
+                });
+            }
+        });
+    }
+</script>
 
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
@@ -10,28 +331,72 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
+        <x-navbar title="Detail Penelitian"
+            description="Pantau dan kelola penelitian dari {{ $penelitian->nama_dosen }}" />
 
         <div class="flex flex-col lg:flex-row gap-4 w-full h-[700px]">
             <!-- Layout 70% -->
             <div class="bg-white w-full lg:w-[70%] p-6 shadow rounded overflow-y-auto h-full">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 mb-4">
+                    @php
+                        $status = $penelitian->status;
+                        $warnaBorder = '';
+                        $warnaTeks = '';
+
+                        switch ($status) {
+                            case 'Draft':
+                                $warnaBorder = '#457B9D';
+                                $warnaTeks = '#457B9D';
+                                break;
+                            case 'Diajukan':
+                                $warnaBorder = '#F4A261';
+                                $warnaTeks = '#F4A261';
+                                break;
+                            case 'Ditolak':
+                                $warnaBorder = '#DC2626';
+                                $warnaTeks = '#DC2626';
+                                break;
+                            case 'Disetujui':
+                            case 'Diterima':
+                                $warnaBorder = '#006A71';
+                                $warnaTeks = '#006A71';
+                                break;
+                            default:
+                                $warnaBorder = '#EF4444';
+                                $warnaTeks = '#EF4444';
+                                break;
+                        }
+                    @endphp
+
                     <div class="flex gap-4">
                         <h1 class="text-md py-1 font-semibold text-gray-900">Status Penelitian</h1>
-                        <div class="border-2 border-[#EF4444] px-8 py-1 rounded-md">
-                            <p class="text-sm font-medium text-[#EF4444]">Ditolak</p>
+                        <div class="px-8 py-1 rounded-md" style="border: 2px solid {{ $warnaBorder }}">
+                            <p class="text-sm font-medium" style="color: {{ $warnaTeks }}">{{ $status }}</p>
                         </div>
                     </div>
+
                     <!-- Tombol Edit Penelitian -->
-                    <button type="button"
-                        class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
-                        <!-- Icon Edit (Pencil) -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path
-                                d="M17.414 2.586a2 2 0 0 0-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 0 0 0-2.828zM4 15h12v2H4v-2z" />
-                        </svg>
-                        Edit Penelitian
-                    </button>
+                    @if (Auth::user()->role == 'dosen')
+                        <button type="button" onclick="addEdit()"
+                            class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
+                            <!-- Icon Edit (Pencil) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M17.414 2.586a2 2 0 0 0-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 0 0 0-2.828zM4 15h12v2H4v-2z" />
+                            </svg>
+                            Edit Penelitian
+                        </button>
+                    @endif
+
+                    <script>
+                        window.addEdit = function() {
+                            $('input:disabled, select:disabled, textarea:disabled, button:disabled').each(function() {
+                                $(this).removeAttr('disabled');
+                            });
+                            $('input, select, textarea, button').removeClass('cursor-not-allowed opacity-50');
+                        }
+                    </script>
                 </div>
                 <div class="mt-6">
                     <form class="space-y-4" action="#">
@@ -43,8 +408,8 @@
                                         dalam Penelitian</label>
                                     <input type="text" name="jabatan" id="jabatan"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan jabatan dalam penelitian" value="Ketua" required
-                                        disabled />
+                                        placeholder="Masukkan jabatan dalam penelitian"
+                                        value="{{ $penelitian->jabatan }}" required disabled />
                                 </div>
 
                                 <!-- Tahun Penelitian -->
@@ -53,7 +418,8 @@
                                         Penelitian</label>
                                     <input type="number" name="tahun" id="tahun"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        value="2025" placeholder="Masukkan tahun penelitian" min="2000" max="2025" required disabled />
+                                        value="{{ $penelitian->tahun }}" placeholder="Masukkan tahun penelitian"
+                                        min="2000" max="2025" required disabled />
                                 </div>
 
                                 <!-- Besaran Dana -->
@@ -62,11 +428,11 @@
                                         Dana Penelitian</label>
                                     <input type="number" name="dana" id="dana"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan dana penelitian" value="Rp. 58.500.000" required
-                                        disabled />
+                                        placeholder="Masukkan dana penelitian" value="{{ $penelitian->besaran_dana }}"
+                                        required disabled />
                                 </div>
                             </div>
-                            
+
                             <div class="w-full md:w-1/2 space-y-4">
                                 <!-- Judul Penelitian -->
                                 <div>
@@ -74,7 +440,7 @@
                                         Penelitian</label>
                                     <textarea name="judul" id="judul"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
-                                        placeholder="Masukkan judul penelitian" required disabled>The Integration of Popular Culture in Islamic Dakwah for Gen Z; The Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</textarea>
+                                        placeholder="Masukkan judul penelitian" required disabled>{{ $penelitian->judul }}</textarea>
                                 </div>
 
                                 <!-- Sumber Dana -->
@@ -83,8 +449,8 @@
                                         Dana Penelitian</label>
                                     <input type="text" name="sumber" id="sumber"
                                         class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
-                                        placeholder="Masukkan sumber dana penelitian" value="UIN Maulana Malik Ibrahim Malang" required
-                                        disabled />
+                                        placeholder="Masukkan sumber dana penelitian"
+                                        value="{{ $penelitian->sumber_dana }}" required disabled />
                                 </div>
                             </div>
                         </div>
@@ -94,19 +460,21 @@
                 <div class="mt-12 border-t-2 border-gray-300">
                     <div class="flex items-center justify-between mb-4 mt-6">
                         <h1 class="text-xl font-semibold text-gray-900">Bukti Penelitian</h1>
-                        <!-- Tombol Edit Penelitian -->
-                        <button data-modal-target="uploadBuktiPenelitianModal"
-                            data-modal-toggle="uploadBuktiPenelitianModal" type="button"
-                            class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
-                            <!-- Icon Edit (Pencil) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-                            </svg>
-                            Unggah Bukti
-                        </button>
+                        @if (Auth::user()->role == 'dosen')
+                            <!-- Tombol Edit Penelitian -->
+                            <button data-modal-target="uploadBuktiPenelitianModal"
+                                data-modal-toggle="uploadBuktiPenelitianModal" type="button"
+                                class="flex items-center gap-2 text-[#48A6A7] px-4 py-2 hover:text-[#006A71] transition duration-300 w-full md:w-auto hover:underline">
+                                <!-- Icon Edit (Pencil) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
+                                </svg>
+                                Unggah Bukti
+                            </button>
+                        @endif
                     </div>
 
                     <!-- Bukti Penelitian -->
@@ -116,191 +484,116 @@
                             diunggah sesuai dengan format yang ditentukan.</p>
 
                         <!-- Kartu Bukti Penelitian -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            <!-- Card 1 -->
-                            <div
-                                class="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center border-2 border-gray-100 shawdow-lg">
-                                <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon"
-                                        class="w-12 h-12">
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <h3 class="text-sm text-gray-800 mb-4 text-start    ">surat tugas bersama di
-                                        kabupaten indonesia</h3>
-                                    <p class="text-sm text-gray-600">Type: PDF</p>
-                                    <p class="text-sm text-gray-600 mb-4">Size: 7045525 KB</p>
-                                </div>
+                        @if ($filePenelitian->isEmpty())
+                            <div class="text-center text-gray-500 font-medium p-4">
+                                Anda belum mengunggah bukti penelitian.
+                            </div>
+                        @else
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                                <!-- Card 1 -->
+                                @foreach ($filePenelitian as $file)
+                                    @php
+                                        $tipe = '';
+                                        if ($file->tipe == 'pdf') {
+                                            $icon = 'https://cdn-icons-png.flaticon.com/512/337/337946.png';
+                                            $tipe = 'PDF';
+                                        } elseif ($file->tipe == 'docx') {
+                                            $icon = 'https://cdn-icons-png.flaticon.com/512/337/337932.png';
+                                            $tipe = 'DOCX';
+                                        } elseif ($file->tipe == 'xlsx') {
+                                            $icon = 'https://cdn-icons-png.flaticon.com/512/337/337947.png';
+                                            $tipe = 'XLSX';
+                                        } elseif ($file->tipe == 'gambar') {
+                                            $icon = asset('storage/file_penelitian/' . $file->nama_file); // tampilkan gambar asli
+                                            $tipe = 'Gambar';
+                                        } else {
+                                            $icon = 'https://cdn-icons-png.flaticon.com/512/337/337940.png';
+                                            $tipe = 'File';
+                                        }
 
-                                <div class="flex gap-4">
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#48A6A7] group-hover:text-[#006A71] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Edit
-                                        </span>
+                                        $sizeKb = number_format($file->ukuran_file / 1024, 2); // ukuran KB
+                                    @endphp
+
+                                    <div
+                                        class="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center border-2 border-gray-100 shawdow-lg">
+                                        <div
+                                            class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mb-4 overflow-hidden">
+                                            <img src="{{ $icon }}" alt="File Icon"
+                                                class="w-12 h-12 object-contain">
+                                        </div>
+                                        <div class="flex flex-col items-start">
+                                            <h3 class="text-sm text-gray-800 mb-4 text-start">{{ $file->nama_file }}
+                                            </h3>
+                                            <p class="text-sm text-gray-600">Type: {{ $tipe }}</p>
+                                            <p class="text-sm text-gray-600 mb-4">Size: {{ $sizeKb }} KB</p>
+                                        </div>
+
+                                        <div class="flex gap-4">
+                                            {{-- Tombol Hapus --}}
+                                            <button type="button" onclick="hapusFilePenelitian('{{ $file->id }}')"
+                                                class="relative group flex items-center justify-center w-10 h-10">
+                                                <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
+                                                    fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span
+                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                    Hapus
+                                                </span>
+                                            </button>
+
+                                            {{-- Tombol Download --}}
+                                            <a href="{{ route('download.file.penelitian', $file->id) }}"
+                                                class="relative group flex items-center justify-center w-10 h-10">
+                                                <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
+                                                    fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill="currentColor"
+                                                        d="M3 16a2 2 0 002 2h10a2 2 0 002-2v-3h-2v3H5v-3H3v3zm7-1a1 1 0 001-1V5a1 1 0 10-2 0v9a1 1 0 001 1zm-3-3a1 1 0 011.707-.707L10 13.586l1.293-1.293A1 1 0 1112.707 13.707l-2 2a1 1 0 01-1.414 0l-2-2A1 1 0 017 12z" />
+                                                </svg>
+                                                <span
+                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                    Download
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+
+                        @if (Auth::user()->role == 'dosen')
+                            <div class="flex justify-end">
+                                <div class="flex items-center justify-between gap-4 mt-4 mb-4">
+                                    <button type="button" onclick="ubahPenelitian('{{ $penelitian->id }}')"
+                                        class="cursor-not-allowed opacity-50 bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                        Ubah Penelitian
                                     </button>
+                                    @if ($penelitian->status != 'Diajukan')
+                                        <button type="button" onclick="ajukanPenilitian('{{ $penelitian->id }}')"
+                                            class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                            Ajukan Penelitian
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
 
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Hapus
-                                        </span>
+                        @if (Auth::user()->role == 'admin' && $penelitian->status != 'Draft')
+                            <div class="flex justify-start">
+                                <div class="flex items-center justify-between gap-4 mt-4 mb-4">
+                                    <button type="button" onclick="setujuiPenilitian('{{ $penelitian->id }}')"
+                                        class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                        Setujui Penelitian
                                     </button>
-
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Download
-                                        </span>
+                                    <button type="button" onclick="tolakPenilitian('{{ $penelitian->id }}')"
+                                        class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
+                                        Tolak Penelitian
                                     </button>
                                 </div>
                             </div>
-
-                            <!-- Card 1 -->
-                            <div
-                                class="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center border-2 border-gray-100 shawdow-lg">
-                                <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon"
-                                        class="w-12 h-12">
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <h3 class="text-sm text-gray-800 mb-4 text-start    ">surat tugas bersama di
-                                        kabupaten indonesia</h3>
-                                    <p class="text-sm text-gray-600">Type: PDF</p>
-                                    <p class="text-sm text-gray-600 mb-4">Size: 7045525 KB</p>
-                                </div>
-
-                                <div class="flex gap-4">
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#48A6A7] group-hover:text-[#006A71] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Edit
-                                        </span>
-                                    </button>
-
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Hapus
-                                        </span>
-                                    </button>
-
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Download
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Card 1 -->
-                            <div
-                                class="bg-white rounded-lg shadow p-4 flex flex-col items-center text-center border-2 border-gray-100 shawdow-lg">
-                                <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mb-4">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon"
-                                        class="w-12 h-12">
-                                </div>
-                                <div class="flex flex-col items-start">
-                                    <h3 class="text-sm text-gray-800 mb-4 text-start    ">surat tugas bersama di
-                                        kabupaten indonesia</h3>
-                                    <p class="text-sm text-gray-600">Type: PDF</p>
-                                    <p class="text-sm text-gray-600 mb-4">Size: 7045525 KB</p>
-                                </div>
-
-                                <div class="flex gap-4">
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#48A6A7] group-hover:text-[#006A71] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Edit
-                                        </span>
-                                    </button>
-
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Hapus
-                                        </span>
-                                    </button>
-
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Download
-                                        </span>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Tambahkan card lainnya jika perlu -->
-
-                        </div>
-
-                        <div class="flex justify-end">
-                            <div class="flex items-center justify-between gap-4 mt-4 mb-4">
-                                <button
-                                    class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
-                                    Simpan Draft
-                                </button>
-                                <button
-                                    class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
-                                    Ajukan Draft
-                                </button>
-                            </div>
-                        </div>
+                        @endif
                     </div>
 
                 </div>
@@ -315,15 +608,17 @@
 
                         <!-- Tombol tambah komentar dengan dropdown -->
                         <div class="relative group">
-                            <!-- Tombol utama -->
-                            <button id="dropdownKomentarButton" data-dropdown-toggle="dropdownKomentar"
-                                class="flex items-center justify-center w-10 h-10 transition">
-                                <svg class="w-6 h-6 text-[#5F9AB8] group-hover:text-[#457B9D] transition-colors"
-                                    fill="currentColor" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M5 12h14m-7 7V5" />
-                                </svg>
-                            </button>
+                            @if (Auth::user()->role == 'admin')
+                                <!-- Tombol utama -->
+                                <button id="dropdownKomentarButton" data-dropdown-toggle="dropdownKomentar"
+                                    class="flex items-center justify-center w-10 h-10 transition">
+                                    <svg class="w-6 h-6 text-[#5F9AB8] group-hover:text-[#457B9D] transition-colors"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M5 12h14m-7 7V5" />
+                                    </svg>
+                                </button>
+                            @endif
 
                             <!-- Tooltip -->
                             <span
@@ -340,51 +635,135 @@
                                     <textarea id="komentar" name="komentar" rows="4"
                                         class="w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Tulis komentar Anda..."></textarea>
-                                    <button type="submit"
+                                    <p id="helpKomentar" class="help is-hidden text-xs mb-4 text-red-400"></p>
+                                    <button type="button" onclick="addKomentar('{{ $penelitian->id }}')"
                                         class="w-full text-white bg-[#5F9AB8] hover:bg-[#457B9D] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center transition">
                                         Kirim Komentar
                                     </button>
                                 </form>
+                                <script>
+                                    function addKomentar(penelitian_id) {
+                                        let komentar = $('#komentar').val();
+
+                                        if (komentar == "") {
+                                            $("#helpKomentar")
+                                                .text("Silahkan masukan komentar!")
+                                                .removeClass("is-safe")
+                                                .addClass("is-danger");
+                                            $("#komentar").focus();
+                                            return;
+                                        }
+
+                                        if (komentar != "") {
+                                            $("#helpKomentar")
+                                                .text("")
+                                                .removeClass("is-danger");
+                                        }
+
+                                        $.ajax({
+                                            url: "{{ route('add.komentar') }}",
+                                            type: 'POST',
+                                            data: {
+                                                isi_komentar: komentar,
+                                                penelitian_id: penelitian_id,
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Berhasil',
+                                                    text: 'Komentar berhasil ditambahkan!',
+                                                }).then(() => {
+                                                    location.reload();
+                                                });
+                                            },
+                                            error: function(xhr, status, error) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Error',
+                                                    text: 'Terjadi kesalahan saat menambahkan data!',
+                                                });
+                                            }
+                                        });
+                                    }
+                                </script>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="space-y-2">
-                        <div class="bg-gray-100 p-4 rounded-lg shadow-lg max-w-md w-full">
-                            <!-- Profil, Nama & Tombol -->
-                            <div class="flex items-center justify-between mb-2">
-                                <div class="flex items-center gap-3">
-                                    <!-- Foto Profil -->
-                                    <img src="assets/images/user.png" alt="User"
-                                        class="w-10 h-10 rounded-full object-cover">
-
-                                    <!-- Nama dan Tanggal -->
-                                    <div>
-                                        <p class="text-sm font-semibold text-gray-800">Fani Muh Ardian Saputra</p>
-                                        <p class="text-xs text-gray-500">4 Okt 2022</p>
-                                    </div>
-                                </div>
-                                <!-- Tombol Ceklis -->
-                                <button
-                                    class="relative group w-6 h-6 flex items-center justify-center bg-green-100 hover:bg-green-200 rounded-full transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span
-                                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                        Telah Selesai
-                                    </span>
-                                </button>
+                    <div class="space-y-4">
+                        @if ($komentarPenelitian->isEmpty())
+                            <div class="text-center text-gray-500 font-medium p-4">
+                                Belum ada komentar.
                             </div>
-                            <!-- Isi Komentar -->
-                            <p class="text-sm text-gray-800 mb-1">Hapus baris yang tidak memiliki konten dan rapihkan
-                                formatnya!</p>
-                        </div>
+                        @else
+                            @foreach ($komentarPenelitian as $data)
+                                <div class="bg-gray-100 p-4 rounded-lg shadow-md max-w-md w-full">
+                                    <!-- Profil, Nama & Tombol -->
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center gap-3">
+                                            <!-- Foto Profil -->
+                                            <img src="{{ asset($data->foto_profile) }}" alt="User"
+                                                class="w-10 h-10 rounded-full object-cover">
 
+                                            <!-- Nama dan Tanggal -->
+                                            <div>
+                                                <p class="text-sm font-semibold text-gray-800">
+                                                    {{ $data->nama_lengkap }}
+                                                </p>
+                                                <p class="text-xs text-gray-500">{{ $data->create_at }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Tombol Ceklis -->
+                                        @if (Auth::user()->role == 'admin')
+                                            <button type="button" onclick="deleteKomentar('{{ $data->id }}')"
+                                                class="relative group w-6 h-6 flex items-center justify-center bg-green-100 hover:bg-green-200 rounded-full transition">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600"
+                                                    viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                        d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span
+                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                    Telah Selesai
+                                                </span>
+                                            </button>
+                                        @endif
+                                    </div>
+                                    <!-- Isi Komentar -->
+                                    <p class="text-sm text-gray-800 mb-1">{{ $data->komentar }}</p>
+                                </div>
+                            @endforeach
+                        @endif
+                        <script>
+                            function deleteKomentar(komentar_id) {
+                                $.ajax({
+                                    url: `/delete-komentar/${komentar_id}`,
+                                    type: 'GET',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Berhasil',
+                                            text: 'Komentar berhasil dihapus!',
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function(xhr, status, error) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: 'Terjadi kesalahan saat menghapus komentar!',
+                                        });
+                                    }
+                                });
+                            }
+                        </script>
                     </div>
                 </div>
 
@@ -414,95 +793,125 @@
                             <div id="dropdownKolaborasi"
                                 class="z-50 hidden w-75 sm:w-72 md:w-75 absolute right-0 mt-3 bg-white rounded-lg border border-gray-200 shadow-lg p-4 space-y-4">
                                 <!-- User Kolaborasi -->
-                                <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
-                                    <!-- Foto Profil -->
-                                    <img src="assets/images/user.png" alt="User"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <div class="flex justify-between w-full items-center">
-                                        <p class="text-gray-900 font-medium text-sm">Drs, Dr, Fani Muh Ardian S.kom,
-                                            M.M</p>
-                                        <!-- Button Tambah -->
-                                        <button class="flex items-center justify-center w-10 h-10">
-                                            <svg class="w-5 h-5 text-[#48A6A7] hover:text-[#006A71] transition"
-                                                fill="currentColor" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
-                                            </svg>
-                                        </button>
+                                @foreach ($dosen as $data)
+                                    <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
+                                        <!-- Foto Profil -->
+                                        <img src="{{ asset($data->foto_profile) }}" alt="User"
+                                            class="w-10 h-10 rounded-full object-cover">
+                                        <div class="flex justify-between w-full items-center">
+                                            <p class="text-gray-900 font-medium text-sm">{{ $data->nama_lengkap }}</p>
+                                            <!-- Button Tambah -->
+                                            @if (Auth::user()->role == 'dosen')
+                                                <button type="button"
+                                                    onclick="addKolaborasi('{{ $data->id }}', '{{ $penelitian->id }}')"
+                                                    class="flex items-center justify-center w-10 h-10">
+                                                    <svg class="w-5 h-5 text-[#48A6A7] hover:text-[#006A71] transition"
+                                                        fill="currentColor" viewBox="0 0 20 20">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="M5 12h14m-7 7V5" />
+                                                    </svg>
+                                                </button>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
 
-                                <!-- User Kolaborasi -->
-                                <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
-                                    <!-- Foto Profil -->
-                                    <img src="assets/images/user.png" alt="User"
-                                        class="w-10 h-10 rounded-full object-cover">
-                                    <div class="flex justify-between w-full items-center">
-                                        <p class="text-gray-900 font-medium text-sm">Drs, Dr, Fani Muh Ardian S.kom,
-                                            M.M</p>
-                                        <!-- Button Tambah -->
-                                        <button class="flex items-center justify-center w-10 h-10">
-                                            <svg class="w-5 h-5 text-[#48A6A7] hover:text-[#006A71] transition"
-                                                fill="currentColor" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
+                                <script>
+                                    function addKolaborasi(dosen_id, penelitian_id) {
 
+                                        $.ajax({
+                                            url: "{{ route('add.kolaborasi') }}",
+                                            type: 'POST',
+                                            data: {
+                                                dosen_id: dosen_id,
+                                                penelitian_id: penelitian_id,
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Berhasil',
+                                                    text: 'Kolaborasi berhasil ditambahkan!',
+                                                }).then(() => {
+                                                    location.reload();
+                                                });
+                                            },
+                                            error: function(xhr, status, error) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Error',
+                                                    text: 'Terjadi kesalahan saat menambahkan data!',
+                                                });
+                                            }
+                                        });
+                                    }
+
+                                    function deleteKolaborasi(kolaborasi_id) {
+                                        $.ajax({
+                                            url: `/delete-kolaborasi/${kolaborasi_id}`,
+                                            type: 'GET',
+                                            data: {
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Berhasil',
+                                                    text: 'Kolaborasi berhasil dihapus!',
+                                                }).then(() => {
+                                                    location.reload();
+                                                });
+                                            },
+                                            error: function(xhr, status, error) {
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Error',
+                                                    text: 'Terjadi kesalahan saat menghapus kolaborasi!',
+                                                });
+                                            }
+                                        });
+                                    }
+                                </script>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="space-y-2">
                         <!-- User Kolaborasi -->
-                        <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
-                            <!-- Foto Profil -->
-                            <img src="assets/images/user.png" alt="User"
-                                class="w-10 h-10 rounded-full object-cover">
-                            <div class="flex justify-between w-full items-center">
-                                <p class="text-gray-900 font-medium text-sm">Drs, Dr, Fani Muh Ardian S.kom, M.M</p>
-                                <!-- Button Delete -->
-                                <button class="relative group flex items-center justify-center w-10 h-10">
-                                    <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                        fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span
-                                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                        Hapus Kolaborasi
-                                    </span>
-                                </button>
+                        @if ($kolaborator->isEmpty())
+                            <div class="text-center text-gray-500 font-medium p-4">
+                                Anda belum menambahkan kolaborator.
                             </div>
-                        </div>
-
-                        <!-- User Kolaborasi -->
-                        <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
-                            <!-- Foto Profil -->
-                            <img src="assets/images/user.png" alt="User"
-                                class="w-10 h-10 rounded-full object-cover">
-                            <div class="flex justify-between w-full items-center">
-                                <p class="text-gray-900 font-medium text-sm">Drs, Dr, Fani Muh Ardian S.kom, M.M</p>
-                                <!-- Button Delete -->
-                                <button class="relative group flex items-center justify-center w-10 h-10">
-                                    <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                        fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <span
-                                        class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                        Hapus Kolaborasi
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-
+                        @else
+                            @foreach ($kolaborator as $data)
+                                <div class="flex items-center gap-4 w-full p-4 bg-gray-100 rounded-lg shadow-lg">
+                                    <!-- Foto Profil -->
+                                    <img src="{{ asset($data->dosen->foto_profile) }}" alt="User"
+                                        class="w-10 h-10 rounded-full object-cover">
+                                    <div class="flex justify-between w-full items-center">
+                                        <p class="text-gray-900 font-medium text-sm">{{ $data->dosen->nama_lengkap }}
+                                        </p>
+                                        @if (Auth::user()->role == 'dosen')
+                                            <!-- Button Delete -->
+                                            <button type="button" onclick="deleteKolaborasi('{{ $data->id }}')"
+                                                class="relative group flex items-center justify-center w-10 h-10">
+                                                <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
+                                                    fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd"
+                                                        d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span
+                                                    class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                    Hapus Kolaborasi
+                                                </span>
+                                            </button>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -535,11 +944,12 @@
                 <div class="p-4 md:p-5 max-h-96 overflow-y-auto">
                     <form class="space-y-4" action="#">
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                            <label for="namaFile" class="block mb-2 text-sm font-medium text-gray-900">Nama
                                 File</label>
-                            <input type="text" name="email" id="email"
+                            <input type="text" name="namaFile" id="namaFile"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukan nama file" required />
+                            <p id="helpJudul" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                         <!-- Upload Bukti Penelitian (Drag & Drop) -->
                         <div class="mb-4">
@@ -549,14 +959,14 @@
                                 class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:border-gray-400 cursor-pointer hover:bg-gray-200 transition">
                                 <p class="text-sm text-gray-700 mt-4">Tarik dan letakkan gambar atau file di sini atau
                                     klik untuk unggah</p>
-                                <input type="file" id="fileElem" multiple class="hidden"
+                                <input type="file" id="filePenelitian" multiple class="hidden"
                                     onchange="handleFiles(this.files)">
-                                <button type="button" onclick="document.getElementById('fileElem').click()"
+                                <button type="button" onclick="document.getElementById('filePenelitian').click()"
                                     class="mt-4 mb-6 text-white bg-[#48A6A7] hover:bg-[#006A71] font-medium rounded px-4 py-1 text-sm">
                                     Pilih File
                                 </button>
                             </div>
-
+                            <p id="helpFilePenelitian" class="help is-hidden text-xs mt-2 mb-4 text-red-400"></p>
                             <!-- Preview File -->
                             <div id="preview" class="mt-4 space-y-4"></div>
                         </div>
@@ -628,7 +1038,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
-                    <button
+                    <button type="button" onclick="uploadFilePenelitian('{{ $penelitian->id }}')"
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Unggah Bukti Penelitian
                     </button>

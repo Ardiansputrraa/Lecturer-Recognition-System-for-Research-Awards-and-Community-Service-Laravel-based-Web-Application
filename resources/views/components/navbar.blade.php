@@ -1,5 +1,23 @@
 @props(['title' => 'Dashboard', 'description' => 'Pantau dan kelola data dosen secara efisien'])
 
+<script>
+    function readNotification(id, url) {
+        $.ajax({
+            url: "{{ route('read.notifikasi') }}",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                id: id
+            },
+            success: function(response) {
+                window.location.href = "/" + url;
+            },
+            error: function(xhr, status, error) {
+                console.log("Terjadi kesalahan saat menandai notifikasi sebagai dibaca.");
+            }
+        });
+    }
+    </script>
 <!-- Navbar -->
 <div class="flex items-center justify-between mb-6">
     <div>
@@ -20,7 +38,7 @@
                 </svg>
 
                 <!-- Notification Badge -->
-                <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">3</span>
+                <span class="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full">{{ $unreadCount }}</span>
             </button>
 
             <!-- Dropdown Notification -->
@@ -34,39 +52,26 @@
                 </div>
 
                 <ul class="max-h-100 overflow-y-auto">
-                    <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
-                        <img src="assets/images/user.png" alt="User" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <p class="font-semibold text-gray-800">Fajar Rahman</p>
-                            <p class="text-gray-600">Pesan baru diterima</p>
-                            <div class="f1lex items-center space-x-4 mt-2">
-                                <span class="text-gray-600">12-01-2024</span>
-                                <span class="text-gray-600">06.00</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
-                        <img src="assets/images/user.png" alt="User" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <p class="font-semibold text-gray-800">Sinta Dewi</p>
-                            <p class="text-gray-600">Update sistem tersedia</p>
-                            <div class="f1lex items-center space-x-4 mt-2">
-                                <span class="text-gray-600">12-01-2024</span>
-                                <span class="text-gray-600">06.00</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex items-start space-x-3 px-4 py-3 text-sm hover:bg-gray-100 cursor-pointer">
-                        <img src="assets/images/user.png" alt="User" class="w-10 h-10 rounded-full object-cover">
-                        <div>
-                            <p class="font-semibold text-gray-800">Andi Wijaya</p>
-                            <p class="text-gray-600">Pengingat rapat pukul 15.0</p>
-                            <div class="f1lex items-center space-x-4 mt-2">
-                                <span class="text-gray-600">12-01-2024</span>
-                                <span class="text-gray-600">06.00</span>
-                            </div>
-                        </div>
-                    </li>
+                    @foreach ($notifikasi as $data)
+                        <button type="button" onclick="readNotification('{{ $data->id }}', '{{ $data->url }}')" class="block">
+                            <li class="flex items-start space-x-3 px-4 py-3 text-sm cursor-pointer {{ $data->status === 'read' ? 'bg-gray-100' : 'hover:bg-gray-100' }}">
+                                <img src="{{ asset($data->profile_pengirim) }}" alt="User"
+                                    class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <p class="font-semibold text-gray-800 text-left mb-1">
+                                        {{ $data->nama_pengirim ?? 'Pengguna' }}</p>
+                                    <p class="text-gray-600 text-left">{{ $data->komentar }}</p>
+                                    <div class="flex items-center space-x-4 mt-2">
+                                        <span
+                                            class="text-gray-600">{{ \Carbon\Carbon::parse($data->created_at)->format('d-m-Y') }}</span>
+                                        <span
+                                            class="text-gray-600">{{ \Carbon\Carbon::parse($data->created_at)->format('H:i') }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </button>
+                    @endforeach
+
                 </ul>
             </div>
         </div>

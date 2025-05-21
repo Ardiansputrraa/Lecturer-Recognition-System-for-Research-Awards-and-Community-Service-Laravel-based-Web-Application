@@ -14,7 +14,8 @@ class KomentarPenelitian extends Model
     protected $fillable = [
         'penelitian_id',
         'komentar',
-        'created_at',
+        'nama_lengkap',
+        'foto_profile',
     ];
 
     public function penelitian()

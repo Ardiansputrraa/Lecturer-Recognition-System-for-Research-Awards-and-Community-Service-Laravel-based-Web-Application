@@ -55,7 +55,7 @@
                     <span class="ms-3" x-show="sidebarOpen" x-transition>Dashboard</span>
                 </a>
             </li>
-
+            @if (Auth::user()->role == 'admin')
             <li>
                 <a href="/kelola-dosen"
                     class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
@@ -71,7 +71,7 @@
                     <span class="ms-3" x-show="sidebarOpen" x-transition>Dosen</span>
                 </a>
             </li>
-
+            @endif
             <li>
                 <a href="/publikasi-dosen"
                     class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">

@@ -9,11 +9,13 @@ class FilePenelitian extends Model
 {
     use HasFactory;
     protected $table = 'file_penelitian';
-
+    
     protected $fillable = [
         'penelitian_id',
         'file_path',
-        'uploaded_at',
+        'nama_file',
+        'tipe',
+        'size',
     ];
 
     public function penelitian()

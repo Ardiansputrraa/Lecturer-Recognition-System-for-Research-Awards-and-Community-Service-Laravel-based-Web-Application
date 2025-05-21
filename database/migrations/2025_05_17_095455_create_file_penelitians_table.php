@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('penelitian_id')->constrained('penelitian')->onDelete('cascade');
             $table->string('file_path');
-            $table->timestamp('uploaded_at')->nullable();
+            $table->string('nama_file');
+            $table->string('tipe');
+            $table->string('size');
+            $table->timestamps();
         });
         
     }

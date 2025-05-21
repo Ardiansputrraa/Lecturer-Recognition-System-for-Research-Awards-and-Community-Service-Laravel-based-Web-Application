@@ -80,7 +80,7 @@
         });
     }
 
-    function tambahDosen() {
+    function addDosen() {
         let namaLengkap = $("#namaLengkap").val();
         let nip = $("#nip").val();
         let fakultas = $("#fakultas").val();
@@ -595,7 +595,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
-                    <button type="button" onclick="tambahDosen()"
+                    <button type="button" onclick="addDosen()"
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Tambah Dosen
                     </button>

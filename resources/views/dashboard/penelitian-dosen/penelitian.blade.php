@@ -1,6 +1,254 @@
 <x-header></x-header>
 
-<script></script>
+<script>
+    $(document).ready(function() {
+        $('#search').on('keyup', function() {
+            let query = $(this).val();
+            if (query != "") {
+                searchDataDosen(query);
+            } else {
+                window.location.reload();
+            }
+        });
+
+        $('#searchTahunPenelitian').on('change', function() {
+            let tahun = $(this).val();
+            let query = $('#searchTahunPenelitian').val();
+
+            if (tahun !== "") {
+                searchDataDosen(query);
+            } else {
+                window.location.reload();
+            }
+        });
+
+        $('.tab-status').on('click', function(e) {
+            e.preventDefault();
+
+            let status = $(this).data('status');
+
+            $('.tab-status').removeClass('text-[#457B9D] border-b-2 border-[#457B9D] font-semibold');
+            $(this).addClass('text-[#457B9D] border-b-2 border-[#457B9D] font-semibold');
+
+            if (status !== "Semua") {
+                searchDataDosen(status);
+            } else {
+                window.location.reload();
+            }
+        });
+    });
+
+    function searchDataDosen(query) {
+        $.ajax({
+            url: "{{ route('search.penelitian') }}",
+            type: "GET",
+            data: {
+                _token: "{{ csrf_token() }}",
+                keyword: query,
+            },
+            success: function(data) {
+                console.log(data);
+                let tabelPenelitian = $("#tabelPenelitian");
+                tabelPenelitian.empty();
+
+                if (data.length > 0) {
+                    for (let i = 0; i < data.length; i++) {
+                        let statusColor = '';
+                        switch (data[i].status) {
+                            case 'Draft':
+                                statusColor = '#457B9D';
+                                break;
+                            case 'Diajukan':
+                                statusColor = '#F4A261';
+                                break;
+                            case 'Ditolak':
+                                statusColor = '#DC2626';
+                                break;
+                            case 'Disetujui':
+                                statusColor = '#006A71';
+                                break;
+                            default:
+                                statusColor = '#000000';
+                        }
+
+                        tabelPenelitian.append(
+                            `<tr class="bg-white border-b">
+                                <td class="px-4 py-3">${i + 1}</td>
+                                <td class="px-4 py-3 font-medium text-gray-900">${data[i].nama_dosen}</td>
+                                <td class="px-4 py-3">${data[i].jabatan}</td>
+                                <td class="px-4 py-3">${data[i].judul}</td>
+                                <td class="px-4 py-3">${data[i].tahun}</td>
+                                <td class="px-4 py-3">Rp ${parseInt(data[i].besaran_dana).toLocaleString()}</td>
+                                <td class="px-4 py-3">${data[i].sumber_dana}</td>
+                                <td class="px-4 py-3" style="color: ${statusColor};">${data[i].status}</td>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center justify-start gap-3">
+                                        <!-- Button View -->
+                                        <a href="/detail-penelitian/${data[i]["id"]}" class="relative group flex items-center justify-center w-10 h-10">
+                                            <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
+                                            </svg>
+                                            <span
+                                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                Lihat
+                                            </span>
+                                        </a>
+
+                                        <!-- Button Delete -->
+                                        <button class="relative group flex items-center justify-center w-10 h-10" type="button" onclick="deleteDataPenelitian('${data[i]["id"]}')">
+                                            <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <span
+                                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                Hapus
+                                            </span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>`
+                        );
+                    }
+
+                } else {
+                    tabelPenelitian.append(
+                        '<tr class="bg-white border-b"><td colspan="9" class="text-center">Tidak ada data ditemukan</td></tr>'
+                    );
+                }
+            },
+            error: function() {
+                alert('Terjadi kesalahan saat memuat data.');
+            }
+        });
+    }
+
+    function addPenelitian() {
+        let jabatan = $("#jabatan").val();
+        let judul = $("#judul").val();
+        let tahun = $("#tahun").val();
+        let dana = $("#dana").val();
+        let sumber = $("#sumber").val();
+
+        if (jabatan === "") {
+            $("#helpJabatan")
+                .text("Silahkan masukan jabatan dalam penelitian!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#jabatan").focus();
+            return;
+        } else {
+            $("#helpJabatan").text("").removeClass("is-safe").addClass("is-danger");
+        }
+
+        if (judul === "") {
+            $("#helpJudul")
+                .text("Silahkan masukan judul penelitian!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#judul").focus();
+            return;
+        } else {
+            $("#helpJudul").text("").removeClass("is-safe").addClass("is-danger");
+        }
+
+        if (tahun === "") {
+            $("#helpTahun")
+                .text("Silahkan masukan tahun penelitian!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#tahun").focus();
+            return;
+        } else {
+            $("#helpTahun").text("").removeClass("is-safe").addClass("is-danger");
+        }
+
+        if (dana === "") {
+            $("#helpDana")
+                .text("Silahkan masukan dana penelitian!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#dana").focus();
+            return;
+        } else {
+            $("#helpDana").text("").removeClass("is-safe").addClass("is-danger");
+        }
+
+        if (sumber === "") {
+            $("#helpSumber")
+                .text("Silahkan masukan sumber dana penelitian!")
+                .removeClass("is-safe")
+                .addClass("is-danger");
+            $("#sumber").focus();
+            return;
+        } else {
+            $("#helpSumber").text("").removeClass("is-safe").addClass("is-danger");
+        }
+
+        $.ajax({
+            url: "{{ route('add.penelitian') }}",
+            type: 'POST',
+            data: {
+                jabatan: jabatan,
+                judul: judul,
+                tahun: tahun,
+                dana: dana,
+                sumber: sumber,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: 'Data penelitian berhasil ditambahkan!',
+                }).then(() => {
+                    location.reload();
+                });
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Terjadi kesalahan saat menambahkan data!',
+                });
+            }
+        });
+    }
+
+    function deleteDataPenelitian(id) {
+            $.ajax({
+                type: "GET",
+                url: `/delete-penelitian/${id}`,
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: "Data penelitian berhasil dihapus!",
+                        icon: "success",
+                        confirmButtonText: "Oke",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Delete Failed",
+                        text: xhr.responseText,
+                        icon: "error",
+                        confirmButtonText: "Oke",
+                    });
+                }
+            });
+        }
+</script>
 
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
@@ -10,28 +258,31 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar title="Dashboard" description="Pantau dan kelola data dosen secara efisien" />
+        <x-navbar title="Penelitian Dosen" description="Pantau dan kelola data penelitian secara efisien" />
 
         <!-- Tabel Data Penelitian -->
         <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
 
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 mt-4">
                 <!-- Tombol Tambah Penelitian -->
-                <button data-modal-target="tambahPenelitianModal" data-modal-toggle="tambahPenelitianModal" type="button"
-                    class="flex items-center gap-2 bg-[#48A6A7] text-white px-4 py-2 rounded-lg hover:bg-[#006A71] transition duration-300 w-full md:w-auto">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    Penelitian Dosen
-                </button>
+                @if (Auth::user()->role == 'dosen')
+                    <button data-modal-target="tambahPenelitianModal" data-modal-toggle="tambahPenelitianModal"
+                        type="button"
+                        class="flex items-center gap-2 bg-[#48A6A7] text-white px-4 py-2 rounded-lg hover:bg-[#006A71] transition duration-300 w-full md:w-auto">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Penelitian Dosen
+                    </button>
+                @endif
 
                 <!-- Bagian Pencarian dan Ekspor CSV -->
                 <div class="flex flex-row  items-stretch sm:items-center gap-4 w-full md:w-auto">
                     <!-- Input Pencarian -->
                     <div class="relative w-full sm:w-64">
-                        <input type="text" placeholder="Cari Penelitian Dosen"
+                        <input type="text" placeholder="Cari Penelitian Dosen" id="search"
                             class="w-full border border-gray-400 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-[#48A6A7]" />
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg class="w-5 h-5 text-[#006A71]" fill="currentColor" viewBox="0 0 20 20">
@@ -43,14 +294,14 @@
                     </div>
 
                     <!-- Tombol Ekspor CSV -->
-                    <button
+                    <a href="{{ route('download.penelitian') }}"
                         class="flex items-center gap-2 bg-[#5F9AB8] text-white px-4 py-2 rounded-lg hover:bg-[#457B9D] transition duration-300 w-full sm:w-auto">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
                         </svg>
                         CSV
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -58,32 +309,32 @@
                 <div class="text-sm font-medium text-center text-gray-700 border-b-2 border-[#457B9D]">
                     <ul class="flex flex-wrap -mb-px">
                         <li class="me-2">
-                            <a href="detail-penelitian-dosen"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Semua
+                            <a href="#" data-status="Semua"
+                                class="tab-status inline-block p-4 text-[#457B9D] border-b-2 border-[#457B9D] font-semibold rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Semua
                                 Status</a>
                         </li>
                         <li class="me-2">
-                            <a href="#"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Draft</a>
+                            <a href="#" data-status="Draft"
+                                class="tab-status inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Draft</a>
                         </li>
                         <li class="me-2">
-                            <a href="#"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Diajukan</a>
+                            <a href="#" data-status="Diajukan"
+                                class="tab-status inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Diajukan</a>
                         </li>
                         <li class="me-2">
-                            <a href="#"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Ditolak</a>
+                            <a href="#" data-status="Ditolak"
+                                class="tab-status inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Ditolak</a>
                         </li>
                         <li class="me-2">
-                            <a href="#"
-                                class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Diterima</a>
+                            <a href="#" data-status="Disetujui"
+                                class="tab-status inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-[#457B9D] hover:border-b-3 hover:border-[#457B9D]">Disetujui</a>
                         </li>
                     </ul>
                 </div>
 
                 <!-- Dropdown Tahun Penelitian Dosen -->
                 <div class="w-full max-w-xs">
-                    <select id="tahunPenelitian" name="tahunPenelitian"
+                    <select id="searchTahunPenelitian" name="searchTahunPenelitian"
                         class="mt-1 block w-full px-4 py-2 rounded-md border-2 border-[#48A6A7] focus:border-[#006A71] focus:ring-[#006A71] sm:text-sm">
                         <option value="">Pilih Tahun Penelitian</option>
                         <option value="2025">2025</option>
@@ -102,6 +353,7 @@
                 <table class="w-full text-sm text-left text-gray-700">
                     <thead class="text-xs text-gray-700 uppercase bg-[#9ACBD0]">
                         <tr>
+                            <th scope="col" class="px-4 py-3">No</th>
                             <th scope="col" class="px-4 py-3">Nama Lengkap</th>
                             <th scope="col" class="px-4 py-3">Jabatan dalam Penelitian</th>
                             <th scope="col" class="px-4 py-3">Judul Penelitian</th>
@@ -112,47 +364,61 @@
                             <th scope="col" class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="bg-white border-b">
-                            <td class="px-4 py-3 font-medium text-gray-900">Dr. Rina Wijaya</td>
-                            <td class="px-4 py-3">Ketua</td>
-                            <td class="px-4 py-3">The Integration of Popular Culture in Islamic Dakwah for Gen Z; The
-                                Case Study of Ustadz Hanan Attaki and Ustadzah Oki Setiana Dewi’s Dakwah</td>
-                            <td class="px-4 py-3">2025</td>
-                            <td class="px-4 py-3">Rp. 58.500.000</td>
-                            <td class="px-4 py-3">UIN Maulana Malik Ibrahim Malang</td>
-                            <td class="px-4 py-3 text-[#DC2626]">Ditolak</td>
-                            <td class="px-4 py-3">
-                                <div class="flex items-center justify-start gap-3">
-                                    <!-- Button View -->
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Lihat
-                                        </span>
-                                    </button>
+                    <tbody id="tabelPenelitian">
+                        @foreach ($penelitian as $data)
+                            <tr class="bg-white border-b">
+                                <td class="px-4 py-3">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-900">{{ $data->nama_dosen }}</td>
+                                <td class="px-4 py-3">{{ $data->jabatan }}</td>
+                                <td class="px-4 py-3">{{ $data->judul }}</td>
+                                <td class="px-4 py-3">{{ $data->tahun }}</td>
+                                <td class="px-4 py-3">Rp {{ number_format($data->besaran_dana, 0, ',', '.') }}</td>
+                                <td class="px-4 py-3">{{ $data->sumber_dana }}</td>
+                                @php
+                                    $statusColor = match ($data->status) {
+                                        'Draft' => '#457B9D',
+                                        'Diajukan' => '#F4A261',
+                                        'Ditolak' => '#DC2626',
+                                        'Disetujui' => '#006A71',
+                                        default => '#000000',
+                                    };
+                                @endphp
 
-                                    <!-- Button Delete -->
-                                    <button class="relative group flex items-center justify-center w-10 h-10">
-                                        <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
-                                            fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <span
-                                            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                            Hapus
-                                        </span>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                <td class="px-4 py-3" style="color: {{ $statusColor }};">{{ $data->status }}</td>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center justify-start gap-3">
+                                        <!-- Button View -->
+                                        <a href="{{ url('/detail-penelitian/' . $data->id) }}"
+                                            class="relative group flex items-center justify-center w-10 h-10">
+                                            <svg class="w-5 h-5 text-[#5F9AB8] group-hover:text-[#457B9D] transition"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M10 3C5 3 1 8 1 8s4 5 9 5 9-5 9-5-4-5-9-5zm0 8a3 3 0 110-6 3 3 0 010 6z" />
+                                            </svg>
+                                            <span
+                                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                Lihat
+                                            </span>
+                                        </a>
+
+                                        <!-- Button Delete -->
+                                        <button type="button" onclick="deleteDataPenelitian('{{ $data->id }}')"
+                                            class="relative group flex items-center justify-center w-10 h-10">
+                                            <svg class="w-5 h-5 text-[#EF4444] group-hover:text-[#DC2626] transition"
+                                                fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M6 2a1 1 0 00-1 1v1H2a1 1 0 100 2h1v11a2 2 0 002 2h10a2 2 0 002-2V6h1a1 1 0 100-2h-3V3a1 1 0 00-1-1H6zm3 5a1 1 0 012 0v7a1 1 0 11-2 0V7zm-4 0a1 1 0 012 0v7a1 1 0 11-2 0V7zm8 0a1 1 0 012 0v7a1 1 0 11-2 0V7z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <span
+                                                class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block bg-white border border-gray-300 shadow-lg text-gray-700 text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200">
+                                                Hapus
+                                            </span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -243,6 +509,7 @@
                             <input type="text" name="jabatan" id="jabatan"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukkan jabatan dalam penelitian" required />
+                            <p id="helpJabatan" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                         <div>
                             <label for="judul" class="block mb-2 text-sm font-medium text-gray-900">Judul
@@ -250,6 +517,7 @@
                             <textarea type="text" name="judul" id="judul"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
                                 placeholder="Masukkan judul penelitian" required></textarea>
+                            <p id="helpJudul" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                         <div>
                             <label for="tahun" class="block mb-2 text-sm font-medium text-gray-900">Tahun
@@ -257,6 +525,7 @@
                             <input type="number" name="tahun" id="tahun"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukkan tahun penelitian" min="2000" max="2025" required />
+                            <p id="helpTahun" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                         <div>
                             <label for="dana" class="block mb-2 text-sm font-medium text-gray-900">Besaran Dana
@@ -264,6 +533,7 @@
                             <input type="number" name="dana" id="dana"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5"
                                 placeholder="Masukkan dana penelitian" required />
+                            <p id="helpDana" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                         <div>
                             <label for="sumber" class="block mb-2 text-sm font-medium text-gray-900">Sumber Dana
@@ -271,12 +541,13 @@
                             <textarea name="sumber" id="sumber"
                                 class="bg-gray-100 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-[#48A6A7] focus:border-[#48A6A7] block w-full p-2.5 h-32 resize-none"
                                 placeholder="Masukkan sumber dana penelitian" required></textarea>
+                            <p id="helpSumber" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
                     </form>
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b gap-4">
-                    <button
+                    <button type="button" onclick="addPenelitian()"
                         class="bg-[#5F9AB8] border-2 border-[#457B9D] hover:bg-white text-white hover:text-[#457B9D] font-medium py-2 px-4 rounded-lg transition duration-300">
                         Tambah Penelitian
                     </button>

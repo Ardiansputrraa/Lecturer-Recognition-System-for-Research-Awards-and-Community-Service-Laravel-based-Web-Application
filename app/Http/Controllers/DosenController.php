@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Admin;
 use App\Models\Dosen;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -80,8 +80,6 @@ class DosenController extends Controller
 
     public function addDataDosen(Request $request)
     {
-        // $this->authorize('createAccount', User::class);
-
         $request->validate([
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
@@ -108,7 +106,7 @@ class DosenController extends Controller
             'no_telepon' => $request->nomerTelepon,
         ]);
 
-        return response()->json(['success' => 'Registrasi berhasil.'], 200);
+        return response()->json(['message' => 'Registrasi berhasil.'], 200);
     }
 
     public function searchDataDosen(Request $request)
@@ -130,8 +128,6 @@ class DosenController extends Controller
 
     public function downloadDataDosen()
     {
-
-
         $data = Dosen::all();
 
         $fileName = 'data_dosen.csv';
@@ -165,7 +161,7 @@ class DosenController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
-    public function deleteDataDosen($id, Dosen $dpl)
+    public function deleteDataDosen($id)
     {
 
         DB::beginTransaction();
@@ -175,10 +171,28 @@ class DosenController extends Controller
             User::where('id', $id)->delete();
 
             DB::commit();
-            return response()->json(['message' => 'Data DPL Berhasil Dihapus.'], 200);
+            return response()->json(['message' => 'Data dosen berhasil dihapus.'], 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+    public function readNotifikasi(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|string',
+        ]);
+
+        $notifikasi = Notifikasi::find($request->id);
+        if (!$notifikasi) {
+            return response()->json(['error' => 'Notifikasi tidak ditemukan'], 404);
+        }
+
+        $notifikasi->status = "read";
+        $notifikasi->update();
+
+        return response()->json(['message' => 'Notifikasi telah dibaca!'], 200);
+    }
+
 }
