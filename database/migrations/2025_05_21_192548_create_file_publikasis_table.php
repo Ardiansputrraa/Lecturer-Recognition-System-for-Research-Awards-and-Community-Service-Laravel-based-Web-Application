@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kolaborator_hki', function (Blueprint $table) {
+        Schema::create('file_publikasi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('hki_id')->constrained('hki')->onDelete('cascade');
-            $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade');
+            $table->foreignId('publikasi_id')->constrained('publikasi')->onDelete('cascade');
+            $table->string('file_path');
+            $table->string('nama_file');
+            $table->string('tipe');
+            $table->string('size');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kolaborator_hkis');
+        Schema::dropIfExists('file_publikasis');
     }
 };

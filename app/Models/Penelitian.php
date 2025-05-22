@@ -15,8 +15,8 @@ class Penelitian extends Model
         'nama_dosen',
         'jabatan',
         'judul',
-        'prodi',
         'tahun',
+        'besaran_dana',
         'sumber_dana',
         'status',
     ];

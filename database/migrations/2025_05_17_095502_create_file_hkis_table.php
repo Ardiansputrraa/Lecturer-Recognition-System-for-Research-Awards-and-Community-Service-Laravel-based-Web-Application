@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('file_hkis', function (Blueprint $table) {
+        Schema::create('file_hki', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('hki_id')->constrained('hki')->onDelete('cascade');
+            $table->string('file_path');
+            $table->string('nama_file');
+            $table->string('tipe');
+            $table->string('size');
             $table->timestamps();
         });
     }

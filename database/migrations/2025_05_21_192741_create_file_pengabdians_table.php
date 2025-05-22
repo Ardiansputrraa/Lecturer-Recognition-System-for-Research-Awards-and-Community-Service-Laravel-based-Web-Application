@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('file_pengabdians', function (Blueprint $table) {
+        Schema::create('file_pengabdian', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pengabdian_id')->constrained('pengabdian')->onDelete('cascade');
+            $table->string('file_path');
+            $table->string('nama_file');
+            $table->string('tipe');
+            $table->string('size');
             $table->timestamps();
         });
     }

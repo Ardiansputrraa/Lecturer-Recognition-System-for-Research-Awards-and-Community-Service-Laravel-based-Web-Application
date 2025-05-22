@@ -9,7 +9,7 @@ class KomentarPenelitian extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'komentar_penelitians';
+    protected $table = 'komentar_penelitian';
 
     protected $fillable = [
         'penelitian_id',

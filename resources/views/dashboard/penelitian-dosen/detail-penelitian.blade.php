@@ -57,7 +57,7 @@
         });
     }
 
-    function ajukanPenilitian(id) {
+    function ajukanPenelitian(id) {
         let jabatan = $("#jabatan").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -91,7 +91,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Data penelitian berhasil diubah!",
+                    text: "Penelitian telah diajukan mohon menunggu notikasi dari admin!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -113,7 +113,7 @@
         });
     }
 
-    function setujuiPenilitian(id) {
+    function setujuiPenelitian(id) {
         let jabatan = $("#jabatan").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -147,7 +147,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Data penelitian berhasil diubah!",
+                    text: "Peenelitian telah disetujui!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -169,7 +169,7 @@
         });
     }
 
-    function tolakPenilitian(id) {
+    function tolakPenelitian(id) {
         let jabatan = $("#jabatan").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -203,7 +203,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Data penelitian berhasil diubah!",
+                    text: "Penelitian telah ditolak!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -571,7 +571,7 @@
                                         Ubah Penelitian
                                     </button>
                                     @if ($penelitian->status != 'Diajukan')
-                                        <button type="button" onclick="ajukanPenilitian('{{ $penelitian->id }}')"
+                                        <button type="button" onclick="ajukanPenelitian('{{ $penelitian->id }}')"
                                             class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
                                             Ajukan Penelitian
                                         </button>
@@ -583,11 +583,11 @@
                         @if (Auth::user()->role == 'admin' && $penelitian->status != 'Draft')
                             <div class="flex justify-start">
                                 <div class="flex items-center justify-between gap-4 mt-4 mb-4">
-                                    <button type="button" onclick="setujuiPenilitian('{{ $penelitian->id }}')"
+                                    <button type="button" onclick="setujuiPenelitian('{{ $penelitian->id }}')"
                                         class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
                                         Setujui Penelitian
                                     </button>
-                                    <button type="button" onclick="tolakPenilitian('{{ $penelitian->id }}')"
+                                    <button type="button" onclick="tolakPenelitian('{{ $penelitian->id }}')"
                                         class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
                                         Tolak Penelitian
                                     </button>
@@ -661,7 +661,7 @@
                                         }
 
                                         $.ajax({
-                                            url: "{{ route('add.komentar') }}",
+                                            url: "{{ route('add.komentar.penelitian') }}",
                                             type: 'POST',
                                             data: {
                                                 isi_komentar: komentar,
@@ -740,7 +740,7 @@
                         <script>
                             function deleteKomentar(komentar_id) {
                                 $.ajax({
-                                    url: `/delete-komentar/${komentar_id}`,
+                                    url: `/delete-komentar-penelitian/${komentar_id}`,
                                     type: 'GET',
                                     data: {
                                         _token: '{{ csrf_token() }}'
@@ -773,15 +773,17 @@
 
                         <!-- Tombol tambah kolaborasi -->
                         <div class="relative group">
-                            <button id="dropdownKolaborasiButton" data-dropdown-toggle="dropdownKolaborasi"
-                                class="flex items-center justify-center w-10 h-10 transition">
-                                <svg class="w-6 h-6 text-[#5F9AB8] group-hover:text-[#457B9D] transition-colors"
-                                    fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </button>
+                            @if (Auth::user()->role == 'dosen')
+                                <button id="dropdownKolaborasiButton" data-dropdown-toggle="dropdownKolaborasi"
+                                    class="flex items-center justify-center w-10 h-10 transition">
+                                    <svg class="w-6 h-6 text-[#5F9AB8] group-hover:text-[#457B9D] transition-colors"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M9 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H7Zm8-1a1 1 0 0 1 1-1h1v-1a1 1 0 1 1 2 0v1h1a1 1 0 1 1 0 2h-1v1a1 1 0 1 1-2 0v-1h-1a1 1 0 0 1-1-1Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            @endif
 
                             <!-- Tooltip -->
                             <span
@@ -821,7 +823,7 @@
                                     function addKolaborasi(dosen_id, penelitian_id) {
 
                                         $.ajax({
-                                            url: "{{ route('add.kolaborasi') }}",
+                                            url: "{{ route('add.kolaborasi.penelitian') }}",
                                             type: 'POST',
                                             data: {
                                                 dosen_id: dosen_id,
@@ -849,7 +851,7 @@
 
                                     function deleteKolaborasi(kolaborasi_id) {
                                         $.ajax({
-                                            url: `/delete-kolaborasi/${kolaborasi_id}`,
+                                            url: `/delete-kolaborasi-penelitian/${kolaborasi_id}`,
                                             type: 'GET',
                                             data: {
                                                 _token: '{{ csrf_token() }}'

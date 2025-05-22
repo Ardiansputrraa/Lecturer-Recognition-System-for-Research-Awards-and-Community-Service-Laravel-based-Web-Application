@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class KolaboratorPenelitian extends Model
 {
     use HasFactory;
-    protected $table = 'kolaborator_penelitians';
+    protected $table = 'kolaborator_penelitian';
 
     protected $fillable = [
         'penelitian_id',

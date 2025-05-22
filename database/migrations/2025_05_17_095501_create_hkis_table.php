@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hkis', function (Blueprint $table) {
+        Schema::create('hki', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('dosen_id')->constrained('dosen')->onDelete('cascade');
+            $table->string('nama_dosen');
+            $table->string('hak_cipta');
+            $table->string('judul');
+            $table->string('jenis');
+            $table->integer('tahun');
+            $table->string('status');
             $table->timestamps();
         });
     }

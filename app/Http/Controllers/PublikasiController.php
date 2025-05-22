@@ -4,77 +4,77 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Dosen;
+use App\Models\Publikasi;
 use App\Models\Notifikasi;
-use App\Models\Penelitian;
 use Illuminate\Http\Request;
-use App\Models\FilePenelitian;
-use App\Models\KomentarPenelitian;
+use App\Models\FilePublikasi;
+use App\Models\KomentarPublikasi;
 use Illuminate\Support\Facades\DB;
+use App\Models\KolaboratorPublikasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use App\Models\KolaboratorPenelitian;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
-class PenelitianController extends Controller
+class PublikasiController extends Controller
 {
-    public function viewPagePenelitian()
+    public function viewPagePublikasi()
     {
         if (Auth::user()->role === 'admin') {
-            $penelitian = Penelitian::all();
+            $publikasi = Publikasi::all();
         } else {
-            $penelitian = Penelitian::where('dosen_id', Auth::user()->dosen->id)->get();
+            $publikasi = Publikasi::where('dosen_id', Auth::user()->dosen->id)->get();
         }
 
-        return view('dashboard.penelitian-dosen.penelitian', compact('penelitian'));
+        return view('dashboard.publikasi-dosen.publikasi', compact('publikasi'));
     }
 
-    public function detailDataPenelitian($id)
+    public function detailDataPublikasi($id)
     {
-        $penelitian = Penelitian::where('id', $id)->first();
-        $filePenelitian = FilePenelitian::where('penelitian_id', $penelitian->id)->get();
-        $komentarPenelitian = KomentarPenelitian::where('penelitian_id', $penelitian->id)->get();
+        $publikasi = Publikasi::where('id', $id)->first();
+        $filePublikasi = FilePublikasi::where('publikasi_id', $publikasi->id)->get();
+        $komentarPublikasi = KomentarPublikasi::where('publikasi_id', $publikasi->id)->get();
         $dosen = Dosen::all();
-        $kolaborator = KolaboratorPenelitian::where('penelitian_id', $penelitian->id)->get();
+        $kolaborator = KolaboratorPublikasi::where('publikasi_id', $publikasi->id)->get();
 
-        return view('dashboard.penelitian-dosen.detail-penelitian', [
-            'penelitian' => $penelitian,
-            'filePenelitian' => $filePenelitian,
-            'komentarPenelitian' => $komentarPenelitian,
+        return view('dashboard.publikasi-dosen.detail-publikasi', [
+            'publikasi' => $publikasi,
+            'filePublikasi' => $filePublikasi,
+            'komentarPublikasi' => $komentarPublikasi,
             'dosen' => $dosen,
             'kolaborator' => $kolaborator,
         ]);
     }
 
-    public function updateDataPenelitian(Request $request)
+    public function updateDataPublikasi(Request $request)
     {
         $request->validate([
-            'jabatan' => 'required|string',
+            'kontributor' => 'required|string',
             'judul' => 'required|string',
+            'jenis' => 'required|string',
+            'penerbit' => 'required|string',
             'tahun' => 'required|integer',
-            'besaran_dana' => 'nullable|numeric',
-            'sumber_dana' => 'nullable|string',
             'status' => 'nullable|string',
         ]);
 
-        $penelitian = Penelitian::find($request->id);
-        if (!$penelitian) {
-            return response()->json(['error' => 'Data penelitian tidak ditemukan'], 404);
+        $publikasi = Publikasi::find($request->id);
+        if (!$publikasi) {
+            return response()->json(['error' => 'Data publikasi tidak ditemukan'], 404);
         }
-
-        $penelitian->jabatan = $request->jabatan;
-        $penelitian->judul = $request->judul;
-        $penelitian->tahun = $request->tahun;
-        $penelitian->besaran_dana = $request->besaran_dana;
-        $penelitian->sumber_dana = $request->sumber_dana;
+        
+        $publikasi->kontributor = $request->kontributor;
+        $publikasi->judul = $request->judul;
+        $publikasi->tahun = $request->tahun;
+        $publikasi->jenis = $request->jenis;
+        $publikasi->tahun = $request->tahun;
         if ($request->status) {
-            $penelitian->status = $request->status;
+            $publikasi->status = $request->status;
         }
-        $penelitian->update();
+        $publikasi->update();
 
-        $user = $penelitian->dosen->user;
+        $user = $publikasi->dosen->user;
 
         $auth = Auth::user();
 
@@ -90,40 +90,40 @@ class PenelitianController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => 2,
-                'komentar' => "Data penelitian dari " . $user->dosen->nama_lengkap . " telah diajukan untuk diperiksa.",
+                'komentar' => "Data publikasi dari " . $user->dosen->nama_lengkap . " telah diajukan untuk diperiksa.",
                 'created_at' => now(),
-                'url' => 'detail-penelitian/' . $id,
+                'url' => 'detail-publikasi/' . $id,
             ]);
         } elseif ($request->status === 'Ditolak') {
             Notifikasi::create([
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data penelitian anda telah ditolak silahkan cek kembali.",
+                'komentar' => "Data publikasi anda telah ditolak silahkan cek kembali.",
                 'created_at' => now(),
-                'url' => 'detail-penelitian/' . $id,
+                'url' => 'detail-publikasi/' . $id,
             ]);
         } elseif ($request->status === 'Disetujui') {
             Notifikasi::create([
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data penelitian anda telah disetujui cek detail penelitian.",
+                'komentar' => "Data publikasi anda telah disetujui cek detail publikasi.",
                 'created_at' => now(),
-                'url' => 'detail-penelitian/' . $id,
+                'url' => 'detail-publikasi/' . $id,
             ]);
         }
-        return response()->json(['message' => 'Data Penelitian berhasil diperbarui!'], 200);
+        return response()->json(['message' => 'Data Publikasi berhasil diperbarui!'], 200);
     }
 
-    public function addDataPenelitian(Request $request)
+    public function addDataPublikasi(Request $request)
     {
         $request->validate([
-            'jabatan' => 'required|string',
+            'kontributor' => 'required|string',
             'judul' => 'required|string',
+            'jenis' => 'required|string',
+            'penerbit' => 'required|string',
             'tahun' => 'required|integer',
-            'besaran_dana' => 'nullable|numeric',
-            'sumber_dana' => 'nullable|string',
             'status' => 'nullable|string',
         ]);
 
@@ -137,44 +137,44 @@ class PenelitianController extends Controller
             return response()->json(['error' => 'Dosen tidak ditemukan'], 404);
         }
 
-        $penelitian = new Penelitian();
-        $penelitian->dosen_id = $dosen->id;
-        $penelitian->nama_dosen = $dosen->nama_lengkap;
-        $penelitian->jabatan = $request->jabatan;
-        $penelitian->judul = $request->judul;
-        $penelitian->tahun = $request->tahun;
-        $penelitian->besaran_dana = $request->dana;
-        $penelitian->sumber_dana = $request->sumber;
-        $penelitian->status = 'Draft';
-        $penelitian->save();
+        $publikasi = new Publikasi();
+        $publikasi->dosen_id = $dosen->id;
+        $publikasi->nama_dosen = $dosen->nama_lengkap;
+        $publikasi->kontributor = $request->kontributor;
+        $publikasi->judul = $request->judul;
+        $publikasi->tahun = $request->tahun;
+        $publikasi->jenis = $request->jenis;
+        $publikasi->penerbit = $request->penerbit;
+        $publikasi->status = 'Draft';
+        $publikasi->save();
 
-        return response()->json(['message' => 'Data Penelitian berhasil ditambahkan!'], 200);
+        return response()->json(['message' => 'Data Publikasi berhasil ditambahkan!'], 200);
     }
 
-    public function searchDataPenelitian(Request $request)
+    public function searchDataPublikasi(Request $request)
     {
         $request->validate(rules: [
             'keyword' => 'required|string',
         ]);
 
         $keyword = $request->get('keyword');
-        $results = Penelitian::where('nama_dosen', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('jabatan', 'LIKE', '%' . $keyword . '%')
+        $results = Publikasi::where('nama_dosen', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('kontributor', 'LIKE', '%' . $keyword . '%')
             ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('jenis', 'LIKE', '%' . $keyword . '%')
+            ->orWhere('penerbit', 'LIKE', '%' . $keyword . '%')
             ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('besaran_dana', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('sumber_dana', 'LIKE', '%' . $keyword . '%')
             ->orWhere('status', 'LIKE', '%' . $keyword . '%')
             ->get();
 
         return response()->json($results);
     }
 
-    public function downloadDataPenelitian()
+    public function downloadDataPublikasi()
     {
-        $data = Penelitian::all();
+        $data = Publikasi::all();
 
-        $fileName = 'data_penelitian.csv';
+        $fileName = 'data_publikasi.csv';
 
         $headers = [
             'Content-type' => 'text/csv',
@@ -184,7 +184,7 @@ class PenelitianController extends Controller
             'Expires' => '0',
         ];
 
-        $columns = ['Nama Lengkap', 'Jabatan', 'Judul', 'Tahun Penelitian', 'Besaran Dana', 'Sumber Dana', 'Status'];
+        $columns = ['Nama Lengkap', 'Kontributor', 'Judul', 'Jenis Publikasi', 'Penerbit', 'Tahun', 'Status'];
 
         $callback = function () use ($data, $columns) {
             $file = fopen('php://output', 'w');
@@ -193,11 +193,11 @@ class PenelitianController extends Controller
             foreach ($data as $row) {
                 fputcsv($file, [
                     $row->nama_dosen,
-                    $row->jabadan,
+                    $row->kontributor,
                     $row->judul,
+                    $row->jenis,
+                    $row->penerbit,
                     $row->tahun,
-                    $row->besaran_dana,
-                    $row->sumber_dana,
                     $row->status,
                 ]);
             }
@@ -207,14 +207,14 @@ class PenelitianController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
-    public function deleteDataPenelitian($id)
+    public function deleteDatapublikasi($id)
     {
         DB::beginTransaction();
         try {
-            FilePenelitian::where('penelitian_id', $id)->delete();
-            KolaboratorPenelitian::where('penelitian_id', $id)->delete();
-            KomentarPenelitian::where('penelitian_id', $id)->delete();
-            Penelitian::where('id', $id)->delete();
+            Filepublikasi::where('publikasi_id', $id)->delete();
+            Kolaboratorpublikasi::where('publikasi_id', $id)->delete();
+            Komentarpublikasi::where('publikasi_id', $id)->delete();
+            publikasi::where('id', $id)->delete();
 
             DB::commit();
             return response()->json(['message' => 'Data dosen berhasil dihapus.'], 200);
@@ -224,7 +224,7 @@ class PenelitianController extends Controller
         }
     }
 
-    public function uploadFilePenelitian(Request $request)
+    public function uploadFilePublikasi(Request $request)
     {
         $request->validate([
             'namaFile' => 'required|string|max:255',
@@ -234,11 +234,11 @@ class PenelitianController extends Controller
         $file = $request->file('file');
         $fileSize = $file->getSize();
         $fileName = $request->namaFile . '-' . time() . '.' . $file->getClientOriginalExtension();
-        $filePath = 'storage/images/file-penelitian/' . $fileName;
+        $filePath = 'storage/images/file-publikasi/' . $fileName;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
         }
-        $file->move(public_path('storage/images/file-penelitian'), $fileName);
+        $file->move(public_path('storage/images/file-publikasi'), $fileName);
         $tipe = 'none';
         if ($file->getClientMimeType() == 'application/pdf') {
             $tipe = 'pdf';
@@ -254,8 +254,8 @@ class PenelitianController extends Controller
             $tipe = 'gambar';
         }
 
-        $filePenelitian = FilePenelitian::create([
-            'penelitian_id' => $request->penelitian_id,
+        $filePublikasi = FilePublikasi::create([
+            'publikasi_id' => $request->publikasi_id,
             'file_path' => $filePath,
             'nama_file' => $fileName,
             'tipe' =>  $tipe,
@@ -263,27 +263,27 @@ class PenelitianController extends Controller
             'uploaded_at' => now(),
         ]);
 
-        return response()->json(['success' => 'File penelitian berhasil diunggah.'], 200);
+        return response()->json(['success' => 'File publikasi berhasil diunggah.'], 200);
     }
 
-    function deleteFilePenelitian($id)
+    function deleteFilePublikasi($id)
     {
-        $file_penelitian = FilePenelitian::find($id);
-        $filePath = public_path($file_penelitian->file_path);
-        if ($file_penelitian) {
+        $file_publikasi = FilePublikasi::find($id);
+        $filePath = public_path($file_publikasi->file_path);
+        if ($file_publikasi) {
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
-            $file_penelitian->delete();
+            $file_publikasi->delete();
         }
-        return response()->json(['success' => 'File penelitian berhasil dihapus.'], 200);
+        return response()->json(['success' => 'File publikasi berhasil dihapus.'], 200);
     }
 
-    public function downloadFilePenelitian($id)
+    public function downloadFilePublikasi($id)
     {
-        $file_penelitian = FilePenelitian::findOrFail($id);
+        $file_publikasi = FilePublikasi::findOrFail($id);
 
-        $filePath = public_path($file_penelitian->file_path);
+        $filePath = public_path($file_publikasi->file_path);
 
         if (file_exists($filePath)) {
             return response()->download($filePath, basename($filePath));
@@ -292,11 +292,11 @@ class PenelitianController extends Controller
         }
     }
 
-    public function addKomentarPenelitian(Request $request)
+    public function addKomentarPublikasi(Request $request)
     {
         $request->validate([
             'isi_komentar' => 'required|string',
-            'penelitian_id' => 'required|string',
+            'publikasi_id' => 'required|string',
         ]);
 
         $admin = Auth::user()->admin;
@@ -305,19 +305,19 @@ class PenelitianController extends Controller
             return response()->json(['error' => 'Admiin tidak ditemukan'], 404);
         }
 
-        $penelitian = Penelitian::find($request->penelitian_id);
-        if (!$penelitian) {
-            return response()->json(['error' => 'Data penelitian tidak ditemukan'], 404);
+        $publikasi = Publikasi::find($request->publikasi_id);
+        if (!$publikasi) {
+            return response()->json(['error' => 'Data publikasi tidak ditemukan'], 404);
         }
 
-        $user = $penelitian->dosen->user;
-        $penelitian_id = $request->penelitian_id;
+        $user = $publikasi->dosen->user;
+        $publikasi_id = $request->publikasi_id;
         $isi_komentar = $request->isi_komentar;
 
-        $db_komentar = new KomentarPenelitian();
+        $db_komentar = new KomentarPublikasi();
         $db_komentar->foto_profile = $admin->foto_profile;
         $db_komentar->nama_lengkap = $admin->nama_lengkap;
-        $db_komentar->penelitian_id = $penelitian_id;
+        $db_komentar->publikasi_id = $publikasi_id;
         $db_komentar->komentar = $request->isi_komentar;
         $db_komentar->save();
 
@@ -333,44 +333,44 @@ class PenelitianController extends Controller
             'nama_pengirim' => $userSend->nama_lengkap,
             'profile_pengirim' => $userSend->foto_profile,
             'user_id' => $user->id,
-            'komentar' => "Penelitian anda telah mendapatkan komentar  \"" . $isi_komentar . "\" silahkan cek detail penelitian.",
+            'komentar' => "Publikasi anda telah mendapatkan komentar  \"" . $isi_komentar . "\" silahkan cek detail publikasi.",
             'created_at' => now(),
-            'url' => 'detail-penelitian/' . $penelitian_id,
+            'url' => 'detail-publikasi/' . $publikasi_id,
         ]);
 
         return response()->json(['message' => 'Komentar berhasil ditambahkan!'], 200);
     }
 
-    public function deleteKomentarPenelitian($id)
+    public function deleteKomentarPublikasi($id)
     {
-        $deleted = KomentarPenelitian::where('id', $id)->delete();
+        $deleted = KomentarPublikasi::where('id', $id)->delete();
         if ($deleted) {
-            return response()->json(['success' => 'Data komentar penelitian berhasil dihapus.'], 200);
+            return response()->json(['success' => 'Data komentar publikasi berhasil dihapus.'], 200);
         } else {
             return response()->json(['error' => 'Data tidak ditemukan atau gagal dihapus.'], 404);
         }
     }
 
-    public function addKolaborasiPenelitian(Request $request)
+    public function addKolaborasiPublikasi(Request $request)
     {
         $request->validate([
             'dosen_id' => 'required|string',
-            'penelitian_id' => 'required|string',
+            'publikasi_id' => 'required|string',
         ]);
 
         $dosen_id = $request->dosen_id;
-        $penelitian_id = $request->penelitian_id;
+        $publikasi_id = $request->publikasi_id;
 
-        $kolaborator = new KolaboratorPenelitian();
+        $kolaborator = new KolaboratorPublikasi();
         $kolaborator->dosen_id = $dosen_id;
-        $kolaborator->penelitian_id = $penelitian_id;
+        $kolaborator->publikasi_id = $publikasi_id;
         $kolaborator->save();
 
         $dosen = Dosen::find($request->dosen_id);
         
-        $penelitian = Penelitian::find($request->penelitian_id);
-        if (!$penelitian) {
-            return response()->json(['error' => 'Data penelitian tidak ditemukan'], 404);
+        $publikasi = Publikasi::find($request->publikasi_id);
+        if (!$publikasi) {
+            return response()->json(['error' => 'Data publikasi tidak ditemukan'], 404);
         }
 
         if (!$dosen) {
@@ -391,22 +391,23 @@ class PenelitianController extends Controller
             'nama_pengirim' => $userSend->nama_lengkap,
             'profile_pengirim' => $userSend->foto_profile,
             'user_id' => $user->id,
-            'komentar' => "Anda telah ditambahkan sebagai kolaborator penelitian \"" . $penelitian->nama_dosen . "\" silahkan cek detail penelitian.",
+            'komentar' => "Anda telah ditambahkan sebagai kolaborator publikasi \"" . $publikasi->judul . "\" silahkan cek detail publikasi.",
             'created_at' => now(),
-            'url' => 'detail-penelitian/' . $penelitian_id,
+            'url' => 'detail-publikasi/' . $publikasi_id,
         ]);
 
         return response()->json(['message' => 'Komentar berhasil ditambahkan!'], 200);
     }
 
-    public function deleteKolaborasiPenelitian($id)
+    public function deleteKolaborasiPublikasi($id)
     {
-        $deleted = KolaboratorPenelitian::where('id', operator: $id)->delete();
+        $deleted = KolaboratorPublikasi::where('id', operator: $id)->delete();
         if ($deleted) {
-            return response()->json(['success' => 'Data kolaborator penelitian berhasil dihapus.'], 200);
+            return response()->json(['success' => 'Data kolaborator publikasi berhasil dihapus.'], 200);
         } else {
             return response()->json(['error' => 'Data tidak ditemukan atau gagal dihapus.'], 404);
         }
     }
 
 }
+
