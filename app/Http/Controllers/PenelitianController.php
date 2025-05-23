@@ -78,7 +78,7 @@ class PenelitianController extends Controller
 
         $auth = Auth::user();
 
-        if ($auth->role === 'admin') {  
+        if ($auth->role === 'admin') {
             $userSend = $auth->admin;
         } else {
             $userSend = $auth->dosen;
@@ -90,7 +90,7 @@ class PenelitianController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => 2,
-                'komentar' => "Data penelitian dari " . $user->dosen->nama_lengkap . " telah diajukan untuk diperiksa.",
+                'komentar' => "Data penelitian dengan judul \"" . $request->judul . "\" telah diajukan untuk diperiksa.",
                 'created_at' => now(),
                 'url' => 'detail-penelitian/' . $id,
             ]);
@@ -99,7 +99,7 @@ class PenelitianController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data penelitian anda telah ditolak silahkan cek kembali.",
+                'komentar' => "Data penelitian anda dengan judul \"" . $request->judul . "\" telah ditolak silahkan cek kembali.",
                 'created_at' => now(),
                 'url' => 'detail-penelitian/' . $id,
             ]);
@@ -108,7 +108,7 @@ class PenelitianController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data penelitian anda telah disetujui cek detail penelitian.",
+                'komentar' => "Data penelitian anda dengan judul \"" . $request->judul . "\" telah disetujui cek detail penelitian.",
                 'created_at' => now(),
                 'url' => 'detail-penelitian/' . $id,
             ]);
@@ -158,14 +158,28 @@ class PenelitianController extends Controller
         ]);
 
         $keyword = $request->get('keyword');
-        $results = Penelitian::where('nama_dosen', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('jabatan', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('besaran_dana', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('sumber_dana', 'LIKE', '%' . $keyword . '%')
-            ->orWhere('status', 'LIKE', '%' . $keyword . '%')
-            ->get();
+        $user = Auth::user();
+        if ($user->role !== 'dosen') {
+            $results = Penelitian::where('nama_dosen', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('jabatan', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('besaran_dana', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('sumber_dana', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('status', 'LIKE', '%' . $keyword . '%')
+                ->get();
+        } else {
+            $results = Penelitian::where(function ($query) use ($keyword) {
+                $query->where('jabatan', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('besaran_dana', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('sumber_dana', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('status', 'LIKE', '%' . $keyword . '%');
+            })
+                ->where('dosen_id', $user->dosen->id)
+                ->get();
+        }
 
         return response()->json($results);
     }
@@ -217,7 +231,7 @@ class PenelitianController extends Controller
             Penelitian::where('id', $id)->delete();
 
             DB::commit();
-            return response()->json(['message' => 'Data dosen berhasil dihapus.'], 200);
+            return response()->json(['message' => 'Data penelitian berhasil dihapus.'], 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['message' => $e->getMessage()], 500);
@@ -234,11 +248,11 @@ class PenelitianController extends Controller
         $file = $request->file('file');
         $fileSize = $file->getSize();
         $fileName = $request->namaFile . '-' . time() . '.' . $file->getClientOriginalExtension();
-        $filePath = 'storage/images/file-penelitian/' . $fileName;
+        $filePath = 'storage/file/file-penelitian/' . $fileName;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
         }
-        $file->move(public_path('storage/images/file-penelitian'), $fileName);
+        $file->move(public_path(path: 'storage/file/file-penelitian'), $fileName);
         $tipe = 'none';
         if ($file->getClientMimeType() == 'application/pdf') {
             $tipe = 'pdf';
@@ -323,7 +337,7 @@ class PenelitianController extends Controller
 
         $auth = Auth::user();
 
-        if ($auth->role === 'admin') {  
+        if ($auth->role === 'admin') {
             $userSend = $auth->admin;
         } else {
             $userSend = $auth->dosen;
@@ -367,7 +381,7 @@ class PenelitianController extends Controller
         $kolaborator->save();
 
         $dosen = Dosen::find($request->dosen_id);
-        
+
         $penelitian = Penelitian::find($request->penelitian_id);
         if (!$penelitian) {
             return response()->json(['error' => 'Data penelitian tidak ditemukan'], 404);
@@ -381,7 +395,7 @@ class PenelitianController extends Controller
 
         $auth = Auth::user();
 
-        if ($auth->role === 'admin') {  
+        if ($auth->role === 'admin') {
             $userSend = $auth->admin;
         } else {
             $userSend = $auth->dosen;
@@ -391,7 +405,7 @@ class PenelitianController extends Controller
             'nama_pengirim' => $userSend->nama_lengkap,
             'profile_pengirim' => $userSend->foto_profile,
             'user_id' => $user->id,
-            'komentar' => "Anda telah ditambahkan sebagai kolaborator penelitian \"" . $penelitian->nama_dosen . "\" silahkan cek detail penelitian.",
+            'komentar' => "Anda telah ditambahkan sebagai kolaborator penelitian \"" . $penelitian->judul . "\" silahkan cek detail penelitian.",
             'created_at' => now(),
             'url' => 'detail-penelitian/' . $penelitian_id,
         ]);
@@ -408,5 +422,4 @@ class PenelitianController extends Controller
             return response()->json(['error' => 'Data tidak ditemukan atau gagal dihapus.'], 404);
         }
     }
-
 }

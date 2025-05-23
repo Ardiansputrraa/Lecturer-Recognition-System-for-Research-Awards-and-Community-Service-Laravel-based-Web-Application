@@ -91,7 +91,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Penelitian telah diajukan mohon menunggu notikasi dari admin!",
+                    text: "Penelitian telah diajukan mohon menunggu notifikasi dari admin!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -147,7 +147,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Peenelitian telah disetujui!",
+                    text: "Penelitian telah disetujui!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {

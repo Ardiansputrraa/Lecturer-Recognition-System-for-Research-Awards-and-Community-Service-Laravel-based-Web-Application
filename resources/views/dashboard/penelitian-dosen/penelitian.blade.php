@@ -5,7 +5,7 @@
         $('#search').on('keyup', function() {
             let query = $(this).val();
             if (query != "") {
-                searchDataDosen(query);
+                searchDataPenelitian(query);
             } else {
                 window.location.reload();
             }
@@ -16,7 +16,7 @@
             let query = $('#searchTahunPenelitian').val();
 
             if (tahun !== "") {
-                searchDataDosen(query);
+                searchDataPenelitian(query);
             } else {
                 window.location.reload();
             }
@@ -31,14 +31,14 @@
             $(this).addClass('text-[#457B9D] border-b-2 border-[#457B9D] font-semibold');
 
             if (status !== "Semua") {
-                searchDataDosen(status);
+                searchDataPenelitian(status);
             } else {
                 window.location.reload();
             }
         });
     });
 
-    function searchDataDosen(query) {
+    function searchDataPenelitian(query) {
         $.ajax({
             url: "{{ route('search.penelitian') }}",
             type: "GET",

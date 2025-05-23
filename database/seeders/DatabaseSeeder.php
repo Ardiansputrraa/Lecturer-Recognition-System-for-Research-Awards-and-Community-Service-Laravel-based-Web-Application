@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdminSeeder::class,
             DosenSeeder::class,
+            PengabdianSeeder::class,
+            PublikasiSeeder::class,
+            HkiSeeder::class,
+            PenelitianSeeder::class,
         ]);
     }
 }

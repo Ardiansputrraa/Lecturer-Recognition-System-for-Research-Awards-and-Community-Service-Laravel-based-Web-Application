@@ -74,7 +74,7 @@
             @endif
             <li>
                 <a href="/publikasi-dosen"
-                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
                     <div
                         class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
                         <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
@@ -89,7 +89,7 @@
 
             <li>
                 <a href="/hki-dosen"
-                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
                     <div
                         class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
                         <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
@@ -103,7 +103,7 @@
 
             <li>
                 <a href="/penelitian-dosen"
-                class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                class="sidebar-link sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
                     <div
                         class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
                         <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white aria-hidden="true"
@@ -120,7 +120,7 @@
 
             <li>
                 <a href="/pengabdian-dosen"
-                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
                     <div
                         class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
                         <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"
@@ -136,7 +136,7 @@
 
             <li>
                 <a href="/surat-tugas-dosen"
-                    class="flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
+                    class="sidebar-link flex items-center p-2 text-gray-900 rounded-lg font-semibold text-sm hover:bg-white hover:shadow-xl group">
                     <div
                         class="shrink-0 flex items-center justify-center w-8 h-8 bg-white rounded-lg shadow-lg group-hover:bg-[#006A71]">
                         <svg class="w-4 h-4 text-[#006A71] transition duration-75 group-hover:text-white"

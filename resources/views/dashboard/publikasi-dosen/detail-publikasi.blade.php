@@ -57,7 +57,7 @@
         });
     }
 
-    function ajukanPenelitian(id) {
+    function ajukanPublikasi(id) {
         let kontributor = $("#kontributor").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -91,7 +91,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Publikasi telah diajukan mohon menunggu notikasi dari admin!",
+                    text: "Publikasi telah diajukan mohon menunggu notifikasi dari admin!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -113,7 +113,7 @@
         });
     }
 
-    function setujuiPenelitian(id) {
+    function setujuiPublikasi(id) {
         let kontributor = $("#kontributor").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -147,7 +147,7 @@
             success: function(response) {
                 Swal.fire({
                     title: "Berhasil",
-                    text: "Peenelitian telah disetujui!",
+                    text: "Publikasi telah disetujui!",
                     icon: "success",
                     confirmButtonText: "Oke",
                 }).then(() => {
@@ -169,7 +169,7 @@
         });
     }
 
-    function tolakPenelitian(id) {
+    function tolakPublikasi(id) {
         let kontributor = $("#kontributor").val();
         let judul = $("#judul").val();
         let tahun = $("#tahun").val();
@@ -227,7 +227,7 @@
 
     function uploadFilePublikasi(publikasi_id) {
         let namaFile = $('#namaFile').val();
-        let fileInput = $('#filePenelitian')[0];
+        let fileInput = $('#filePublikasi')[0];
         let file = fileInput.files[0];
 
         if (namaFile === "") {
@@ -246,7 +246,7 @@
         }
 
         if (!file) {
-            $("#helpFilePenelitian")
+            $("#helpFilePublikasi")
                 .text("Silahkan pilih file terlebih dahulu!")
                 .removeClass("is-safe")
                 .addClass("is-danger");
@@ -254,7 +254,7 @@
         }
 
         if (file) {
-            $("#helpFilePenelitian")
+            $("#helpFilePublikasi")
                 .text("")
                 .removeClass("is-danger");
         }
@@ -322,7 +322,6 @@
         });
     }
 </script>
-</script>
 
 <body class="bg-gray-100" x-data="{ sidebarOpen: false }">
 
@@ -332,7 +331,7 @@
     <main :class="sidebarOpen ? 'sm:ml-64' : 'sm:ml-16'"
         class="transition-all duration-300 p-8 bg-gray-100 min-h-screen">
 
-        <x-navbar title="Detail Publikasi" description="Pantau dan kelola penelitian dari {{ $publikasi->nama_dosen }}" />
+        <x-navbar title="Detail Publikasi" description="Pantau dan kelola publikasi dari {{ $publikasi->nama_dosen }}" />
 
         <div class="flex flex-col lg:flex-row gap-4 w-full h-[700px]">
             <!-- Layout 70% -->
@@ -386,7 +385,7 @@
                             </svg>
                             Edit Publikasi
                         </button>
-                    @endif
+                        @endif
 
                     <script>
                         window.addEdit = function() {
@@ -485,7 +484,7 @@
                             yang
                             diunggah sesuai dengan format yang ditentukan.</p>
 
-                        <!-- Kartu Bukti Penelitian -->
+                        <!-- Kartu Bukti Publikasi -->
                         @if ($filePublikasi->isEmpty())
                             <div class="text-center text-gray-500 font-medium p-4">
                                 Anda belum mengunggah bukti publikasi.
@@ -573,7 +572,7 @@
                                         Ubah Publikasi
                                     </button>
                                     @if ($publikasi->status != 'Diajukan')
-                                        <button type="button" onclick="ajukanPenelitian('{{ $publikasi->id }}')"
+                                        <button type="button" onclick="ajukanPublikasi('{{ $publikasi->id }}')"
                                             class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
                                             Ajukan Publikasi
                                         </button>
@@ -585,11 +584,11 @@
                         @if (Auth::user()->role == 'admin' && $publikasi->status != 'Draft')
                             <div class="flex justify-start">
                                 <div class="flex items-center justify-between gap-4 mt-4 mb-4">
-                                    <button type="button" onclick="setujuiPenelitian('{{ $publikasi->id }}')"
+                                    <button type="button" onclick="setujuiPublikasi('{{ $publikasi->id }}')"
                                         class="bg-[#48A6A7] border-2 border-[#006A71] hover:bg-white text-white hover:text-[#006A71] font-medium py-2 px-4 rounded-lg transition duration-300">
                                         Setujui Publikasi
                                     </button>
-                                    <button type="button" onclick="tolakPenelitian('{{ $publikasi->id }}')"
+                                    <button type="button" onclick="tolakPublikasi('{{ $publikasi->id }}')"
                                         class="bg-[#EF4444] border-2 border-[#DC2626] hover:bg-white text-white hover:text-[#DC2626] font-medium py-2 px-4 rounded-lg transition duration-300">
                                         Tolak Publikasi
                                     </button>
@@ -958,22 +957,22 @@
                                 placeholder="Masukan nama file" required />
                             <p id="helpJudul" class="help is-hidden text-xs mt-2 text-red-400"></p>
                         </div>
-                        <!-- Upload Bukti Penelitian (Drag & Drop) -->
+                        <!-- Upload Bukti Publikasi (Drag & Drop) -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Unggah Bukti Penelitian</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Unggah Bukti Publikasi</label>
 
                             <div id="drop-area"
                                 class="flex flex-col items-center justify-center w-full p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-100 hover:border-gray-400 cursor-pointer hover:bg-gray-200 transition">
                                 <p class="text-sm text-gray-700 mt-4">Tarik dan letakkan gambar atau file di sini atau
                                     klik untuk unggah</p>
-                                <input type="file" id="filePenelitian" multiple class="hidden"
+                                <input type="file" id="filePublikasi" multiple class="hidden"
                                     onchange="handleFiles(this.files)">
-                                <button type="button" onclick="document.getElementById('filePenelitian').click()"
+                                <button type="button" onclick="document.getElementById('filePublikasi').click()"
                                     class="mt-4 mb-6 text-white bg-[#48A6A7] hover:bg-[#006A71] font-medium rounded px-4 py-1 text-sm">
                                     Pilih File
                                 </button>
                             </div>
-                            <p id="helpFilePenelitian" class="help is-hidden text-xs mt-2 mb-4 text-red-400"></p>
+                            <p id="helpFilePublikasi" class="help is-hidden text-xs mt-2 mb-4 text-red-400"></p>
                             <!-- Preview File -->
                             <div id="preview" class="mt-4 space-y-4"></div>
                         </div>

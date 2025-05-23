@@ -90,7 +90,7 @@ class PublikasiController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => 2,
-                'komentar' => "Data publikasi dari " . $user->dosen->nama_lengkap . " telah diajukan untuk diperiksa.",
+                'komentar' => "Data publikasi dengan judul \"" . $request->judul . "\" telah diajukan untuk diperiksa.",
                 'created_at' => now(),
                 'url' => 'detail-publikasi/' . $id,
             ]);
@@ -99,7 +99,7 @@ class PublikasiController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data publikasi anda telah ditolak silahkan cek kembali.",
+                'komentar' => "Data publikasi anda dengan judul \"" . $request->judul . "\" telah ditolak silahkan cek kembali.",
                 'created_at' => now(),
                 'url' => 'detail-publikasi/' . $id,
             ]);
@@ -108,7 +108,7 @@ class PublikasiController extends Controller
                 'nama_pengirim' => $userSend->nama_lengkap,
                 'profile_pengirim' => $userSend->foto_profile,
                 'user_id' => $user->id,
-                'komentar' => "Data publikasi anda telah disetujui cek detail publikasi.",
+                'komentar' => "Data publikasi anda dengan judul \"" . $request->judul . "\" telah disetujui cek detail publikasi.",
                 'created_at' => now(),
                 'url' => 'detail-publikasi/' . $id,
             ]);
@@ -158,6 +158,9 @@ class PublikasiController extends Controller
         ]);
 
         $keyword = $request->get('keyword');
+
+        $user = Auth::user();
+        if ($user->role !== 'dosen') {
         $results = Publikasi::where('nama_dosen', 'LIKE', '%' . $keyword . '%')
             ->orWhere('kontributor', 'LIKE', '%' . $keyword . '%')
             ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
@@ -166,6 +169,18 @@ class PublikasiController extends Controller
             ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
             ->orWhere('status', 'LIKE', '%' . $keyword . '%')
             ->get();
+        } else {
+            $results = Publikasi::where(function ($query) use ($keyword) {
+                $query->where('kontributor', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('judul', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('jenis', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('penerbit', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('tahun', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('status', 'LIKE', '%' . $keyword . '%');
+            })
+                ->where('dosen_id', $user->dosen->id)
+                ->get();
+        }
 
         return response()->json($results);
     }
@@ -207,17 +222,17 @@ class PublikasiController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
-    public function deleteDatapublikasi($id)
+    public function deleteDataPublikasi($id)
     {
         DB::beginTransaction();
         try {
-            Filepublikasi::where('publikasi_id', $id)->delete();
-            Kolaboratorpublikasi::where('publikasi_id', $id)->delete();
-            Komentarpublikasi::where('publikasi_id', $id)->delete();
-            publikasi::where('id', $id)->delete();
+            FilePublikasi::where('publikasi_id', $id)->delete();
+            KolaboratorPublikasi::where('publikasi_id', $id)->delete();
+            KomentarPublikasi::where('publikasi_id', $id)->delete();
+            Publikasi::where('id', $id)->delete();
 
             DB::commit();
-            return response()->json(['message' => 'Data dosen berhasil dihapus.'], 200);
+            return response()->json(['message' => 'Data publikasi berhasil dihapus.'], 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['message' => $e->getMessage()], 500);
@@ -234,11 +249,11 @@ class PublikasiController extends Controller
         $file = $request->file('file');
         $fileSize = $file->getSize();
         $fileName = $request->namaFile . '-' . time() . '.' . $file->getClientOriginalExtension();
-        $filePath = 'storage/images/file-publikasi/' . $fileName;
+        $filePath = 'storage/file/file-publikasi/' . $fileName;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
         }
-        $file->move(public_path('storage/images/file-publikasi'), $fileName);
+        $file->move(public_path('storage/file/file-publikasi'), $fileName);
         $tipe = 'none';
         if ($file->getClientMimeType() == 'application/pdf') {
             $tipe = 'pdf';

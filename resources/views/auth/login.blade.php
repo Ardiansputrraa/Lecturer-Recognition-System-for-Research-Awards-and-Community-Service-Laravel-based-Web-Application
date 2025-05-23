@@ -89,7 +89,7 @@
                                         text: "Selamat anda berhasil login!",
                                         confirmButtonText: "Oke",
                                     }).then(() => {
-                                        window.location.href = "/dashboard";
+                                        window.location.href = "/home";
                     
                                     });
                                 },

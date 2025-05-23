@@ -1,41 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HkiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PublikasiController;
 use App\Http\Controllers\PenelitianController;
 use App\Http\Controllers\PengabdianController;
+use App\Http\Controllers\SuratTugasController;
 
 Route::get('/login', function () {
     return view('auth.login');
 });
+
 
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'viewLogin')->name('login');
     Route::post('login-check', 'loginCheck')->name('login.check');
 });
 
+
 Route::middleware(['auth'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/profile', function () {
+        return view('profile.profile');
+    });
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.home.home');
+Route::middleware(['auth'])->group(function () {
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('home', 'viewPageHome')->name('home');
+    });
 });
-
-Route::get('/profile', function () {
-    return view('profile.profile');
-});
-
-Route::get('/home', function () {
-    return view('dashboard.home.home');
-});
-
-Route::get('/kelola-dosen', function () {
-    return view(view: 'dashboard.kelola-dosen.dosen');
-});
-
 Route::middleware(['auth'])->group(function () {
     Route::controller(DosenController::class)->group(function () {
         Route::get('kelola-dosen', 'viewManageDosen')->name('kelola.dosen');
@@ -94,14 +91,54 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::get('/hki-dosen', function () {
-    return view('dashboard.hki-dosen.hki');
+Route::middleware(['auth'])->group(function () {
+    Route::controller(HkiController::class)->group(function () {
+        Route::get('hki-dosen', 'viewPageHki')->name('hki.dosen');
+        Route::get('detail-hki/{hki_id}', 'detailDataHki')->name('detail.hki');
+        Route::post('add-hki', 'addDataHki')->name('add.hki');
+        Route::post('update-hki', 'updateDataHki')->name('update.hki');
+        Route::get('search-hki', 'searchDataHki')->name('search.hki');
+        Route::get('download-hki', 'downloadDataHki')->name('download.hki');
+        Route::get('delete-hki/{hki_id}', 'deleteDataHki')->name('delete.hki');
+
+        Route::post('upload-file-hki', 'uploadFileHki')->name('upload.file.hki');
+        Route::get('download-file-hki/{file_id}', 'downloadFileHki')->name('download.file.hki');
+        Route::get('delete-file-hki/{file_id}', 'deleteFileHki')->name('delete.file.hki');
+
+        Route::post('add-komentar-hki', 'addKomentarHki')->name('add.komentar.hki');
+        Route::get('delete-komentar-hki/{komentar_id}', 'deleteKomentarHki')->name('delete.komentar.hki');
+
+        Route::post('add-kolaborasi-hki', 'addKolaborasiHki')->name('add.kolaborasi.hki');
+        Route::get('delete-kolaborasi-hki/{kolaborasi_id}', 'deleteKolaborasiHki')->name('delete.kolaborasi.hki');
+    });
 });
 
-Route::get('/pengabdian-dosen', function () {
-    return view('dashboard.pengabdian-dosen.pengabdian');
+Route::middleware(['auth'])->group(function () {
+    Route::controller(PengabdianController::class)->group(function () {
+        Route::get('pengabdian-dosen', 'viewPagePengabdian')->name('pengabdian.dosen');
+        Route::get('detail-pengabdian/{pengabdian_id}', 'detailDataPengabdian')->name('detail.pengabdian');
+        Route::post('add-pengabdian', 'addDataPengabdian')->name(name: 'add.pengabdian');
+        Route::post('update-pengabdian', 'updateDataPengabdian')->name('update.pengabdian');
+        Route::get('search-pengabdian', 'searchDataPengabdian')->name('search.pengabdian');
+        Route::get('download-pengabdian', 'downloadDataPengabdian')->name('download.pengabdian');
+        Route::get('delete-pengabdian/{pengabdian_id}', 'deleteDataPengabdian')->name('delete.pengabdian');
+
+        Route::post('upload-file-pengabdian', 'uploadFilePengabdian')->name('upload.file.pengabdian');
+        Route::get('download-file-pengabdian/{file_id}', 'downloadFilePengabdian')->name('download.file.pengabdian');
+        Route::get('delete-file-pengabdian/{file_id}', 'deleteFilePengabdian')->name('delete.file.pengabdian');
+
+        Route::post('add-komentar-pengabdian', 'addKomentarPengabdian')->name('add.komentar.pengabdian');
+        Route::get('delete-komentar-pengabdian/{komentar_id}', 'deleteKomentarPengabdian')->name('delete.komentar.pengabdian');
+
+        Route::post('add-kolaborasi-pengabdian', 'addKolaborasiPengabdian')->name('add.kolaborasi.pengabdian');
+        Route::get('delete-kolaborasi-pengabdian/{kolaborasi_id}', 'deleteKolaborasiPengabdian')->name('delete.kolaborasi.pengabdian');
+    });
 });
 
-Route::get('/detail-pengabdian-dosen', function () {
-    return view('dashboard.pengabdian-dosen.detail-pengabdian');
+Route::middleware(['auth'])->group(function () {
+    Route::controller(SuratTugasController::class)->group(function () {
+        Route::get('surat-tugas-dosen', 'viewSuratTugas')->name('surat.tugas');
+        Route::post('preview-surat-tugas', 'previewSuratTugas')->name('preview.surat');
+        Route::post('download-surat-tugas', 'downloadSuratTugas')->name('download.surat');
+    });
 });
